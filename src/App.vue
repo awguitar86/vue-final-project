@@ -8,7 +8,9 @@
       <v-btn text><router-link style="text-decoration:none; color:black;" to='/'>Home</router-link></v-btn>
       <v-btn text><router-link style="text-decoration:none; color:black;" to='/plan'>Plan Event</router-link></v-btn>
       <v-btn text><router-link style="text-decoration:none; color:black;" to='/contact'>Contact</router-link></v-btn>
-      <v-btn text><router-link style="text-decoration:none; color:black;" to='/login'>Login / Sign Up</router-link></v-btn>
+      <v-btn text v-if="!user"><router-link style="text-decoration:none; color:black;" to='/login'>Login / Sign Up</router-link></v-btn>
+      <v-btn text v-if="user"><router-link style="text-decoration:none; color:black;" to='/account' v-if="user">Account</router-link></v-btn>
+      <v-btn text @click="logout" v-if="user">Logout</v-btn>
     </v-app-bar>
 
     <v-content>
@@ -16,22 +18,38 @@
             <router-view></router-view>
         </transition>
     </v-content>
+    <v-snackbar v-model="snackbar">{{ snackbarText }}</v-snackbar>
   </v-app>
 </template>
 
 <script>
+  import Firebase from 'firebase';
 
-export default {
-  name: 'App',
-  data() {
-    return {
-
+  export default {
+    name: 'App',
+    data() {
+      return {
+        snackbar: false,
+        snackbarText: 'Successfully Logged Out'
+      }
+    },
+    computed: {
+      user() {
+        return this.$store.getters.getUser;
+      }
+    },
+    methods: {
+      logout() {
+        Firebase.auth().signOut()
+        .then(() => {
+          this.$router.replace('/');
+          this.$store.dispatch('deleteUser');
+          this.snackbar = true;
+        })
+        .catch(err => {throw err});
+      }
     }
-  },
-  components: {
-
-  }
-};
+  };
 </script>
 
 <style scoped>

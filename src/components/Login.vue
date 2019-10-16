@@ -6,12 +6,14 @@
                 v-model="email"
                 :rules="emailRules"
                 label="Email"
+                type="email"
                 required
             ></v-text-field>
             <v-text-field
                 v-model="password"
                 :rules="passwordRules"
                 label="Password"
+                type="password"
                 required
             ></v-text-field>
             <v-btn 
@@ -21,7 +23,7 @@
                 depressed
             >Login</v-btn> 
             <p class="mt-4">You don't have an account? You can <router-link to='signup'>create one</router-link>!</p>
-        </v-form>    
+        </v-form>
     </v-container>
 </template>
 
@@ -41,7 +43,7 @@
                 passwordRules: [
                     v => !!v || 'Password is required',
                     v => v.length >= 10 || 'Password must be at least 10 characters',
-                ]
+                ],
             }
         },
         methods: {
@@ -49,7 +51,9 @@
                 Firebase.auth().signInWithEmailAndPassword(this.email, this.password)
                 .then(
                     user => {
-                        alert('Well Done! You are now logged in!')
+                        this.$router.replace('account');
+                        this.$store.dispatch('setUser');
+                        this.snackbar = true;
                     },
                     err => {
                         alert(`Oops. ${err.message}`)
