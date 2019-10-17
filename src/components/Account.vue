@@ -1,7 +1,6 @@
 <template>
     <v-container class="d-flex flex-column align-center mt-5">
-        <h2 class="headline text-uppercase">Welcome to your Account!</h2>
-        <v-snackbar v-model="snackbar" bottom>{{ snackbarText }}</v-snackbar>
+        <h2 class="headline text-uppercase">Welcome to your Account {{ userName }}!</h2>
     </v-container>
 </template>
 <script>
@@ -10,14 +9,9 @@
     export default {
         data() {
             return {
-                snackbar: false,
-                snackbarText: 'Successfully Logged In!'
+                userName: this.$store.getters.getUser.displayName
             }
         },
-        created() {
-            const user = Firebase.auth().currentUser;
-            user ? this.snackbar = true : this.snackbar = false;
-        }
         
     }
 </script>

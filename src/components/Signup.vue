@@ -3,21 +3,30 @@
         <h2 class="headline text-uppercase">Let's create a new account!</h2>
         <v-form id="login-form" class="mt-4">
             <v-text-field
+                v-model="name"
+                label="Name"
+                type="text"
+                required
+            ></v-text-field>
+            <v-text-field
                 v-model="email"
                 :rules="emailRules"
                 label="Email"
+                type="email"
                 required
             ></v-text-field>
             <v-text-field
                 v-model="password"
                 :rules="passwordRules"
                 label="Password"
+                type="password"
                 required
             ></v-text-field>
             <v-text-field
                 v-model="confirmPassword"
                 :rules="passwordRules"
                 label="Confirm Password"
+                type="password"
                 required
             ></v-text-field>
             <v-btn 
@@ -42,6 +51,7 @@
         name: 'signUp',
         data() {
             return {
+                name: '',
                 email: '',
                 password: '',
                 confirmPassword: '',
@@ -60,7 +70,9 @@
                 Firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
                 .then(
                     user => {
+                        Firebase.auth().onAuthStateChanged(user => user.updateProfile({displayName: this.name}));
                         this.$router.replace('account');
+                        this.$store.dispatch('setUser');
                     },
                     err => {
                         alert(`Oops. ${err.message}`)

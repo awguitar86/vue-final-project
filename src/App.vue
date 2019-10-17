@@ -18,7 +18,7 @@
             <router-view></router-view>
         </transition>
     </v-content>
-    <v-snackbar v-model="snackbar">{{ snackbarText }}</v-snackbar>
+    <v-snackbar v-model="snackbar" color="success" right>{{ snackbarText }}</v-snackbar>
   </v-app>
 </template>
 
@@ -30,12 +30,18 @@
     data() {
       return {
         snackbar: false,
-        snackbarText: 'Successfully Logged Out'
+        snackbarText: 'Successfully Logged Out',
       }
     },
     computed: {
       user() {
-        return this.$store.getters.getUser;
+        if(this.$store.getters.getUser) {
+          this.snackbar = true;
+          this.snackbarText = 'Successfully Logged In!';
+          return true;
+        } else {
+          return false
+        }
       }
     },
     methods: {
@@ -44,6 +50,7 @@
         .then(() => {
           this.$router.replace('/');
           this.$store.dispatch('deleteUser');
+          this.snackbarText = 'Successfully Logged Out.'
           this.snackbar = true;
         })
         .catch(err => {throw err});
@@ -52,7 +59,7 @@
   };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
     body {
         padding: 30px;
     }

@@ -23,6 +23,8 @@
                 depressed
             >Login</v-btn> 
             <p class="mt-4">You don't have an account? You can <router-link to='signup'>create one</router-link>!</p>
+            <br><br>
+            <v-alert type="error" v-if="alert">{{ alertText }}</v-alert>
         </v-form>
     </v-container>
 </template>
@@ -44,6 +46,8 @@
                     v => !!v || 'Password is required',
                     v => v.length >= 10 || 'Password must be at least 10 characters',
                 ],
+                alert: false,
+                alertText: ''
             }
         },
         methods: {
@@ -54,9 +58,11 @@
                         this.$router.replace('account');
                         this.$store.dispatch('setUser');
                         this.snackbar = true;
+                        console.log(user);
                     },
                     err => {
-                        alert(`Oops. ${err.message}`)
+                        this.alertText = `Oops. ${err.message}`
+                        this.alert = true;
                     }
                 );
             }
@@ -64,7 +70,7 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
     #login-form {
         width: 40%;
     }
