@@ -19,6 +19,7 @@
             <v-btn 
                 @click="login" 
                 class="mt-4"
+                id="login-btn"
                 color="primary"
                 depressed
             >Login</v-btn> 
@@ -72,6 +73,21 @@
 
 <style scoped lang="scss">
     #login-form {
-        width: 40%;
+        width: 90%;
+    }
+    #login-btn {
+        width: 100%;
+        height: 50px;
+    }
+
+    @media only screen and (min-width: 48rem) {
+        #login-form {
+            width: 40%;
+        }
+    }
+
+    // For large screens
+    @media only screen and (min-width: 75rem) {
+
     }
 </style>

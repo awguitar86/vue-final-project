@@ -1,11 +1,12 @@
 import Home from './components/Home.vue';
-import Plan from './components/Plan.vue';
+import About from './components/About.vue';
 import Contact from './components/Contact.vue';
 import Login from './components/Login.vue';
 import Signup from './components/Signup.vue';
+import Plan from './components/Plan.vue';
 import Account from './components/Account.vue';
 import Err404 from './components/404.vue';
-
+import Menu from './components/NavSmall.vue';
 
 export const routes = [
     { 
@@ -16,8 +17,8 @@ export const routes = [
       } 
     },
     { 
-      path: '/plan', 
-      component: Plan,
+      path: '/about', 
+      component: About,
       meta: {
         requiresAuth: false
       } 
@@ -44,6 +45,13 @@ export const routes = [
       }
     },
     { 
+      path: '/plan', 
+      component: Plan,
+      meta: {
+        requiresAuth: true
+      } 
+    },
+    { 
       path: '/account',
       name: 'account',
       component: Account, 
@@ -58,5 +66,12 @@ export const routes = [
         requiresAuth: false
       }
 
-    }
+    },
+    { 
+      path: '/menu', 
+      component: Menu,
+      meta: {
+        requiresAuth: false
+      }
+    },
 ];
