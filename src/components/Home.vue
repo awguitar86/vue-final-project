@@ -1,8 +1,6 @@
 <template>
     <v-container class="d-flex flex-column align-center mt-5">
-        <v-toolbar-title class="headline text-uppercase">
-            <span>Welcome to The Living Planet Events!</span>
-        </v-toolbar-title>
+        <h1 class="headline text-uppercase">Welcome to The Living Planet Events!</h1>
     </v-container>
 </template>
 
