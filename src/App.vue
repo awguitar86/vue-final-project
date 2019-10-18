@@ -62,14 +62,22 @@
     computed: {
       user() {
         if(this.$store.getters.getUser) {
-          this.snackbar = true;
-          this.snackbarText = 'Successfully Logged In!';
           return true;
         } else {
-          return false
+          return false;
         }
       }
     },
+    watch: {
+      user() {
+        if(this.user) {
+          this.snackbar = true;
+          this.snackbarText = "Successfully Logged In!";
+        } else {
+          null
+        }
+      }
+    },  
     methods: {
       logout() {
         Firebase.auth().signOut()

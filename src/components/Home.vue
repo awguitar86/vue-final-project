@@ -5,11 +5,7 @@
 </template>
 
 <script>
-import Firebase from 'firebase';
-export default {
-    // created(){
-    //     let user = Firebase.auth().currentUser;
-    //     user ? console.log("Yup!") : console.log("Nope");
-    // }
-}
+    export default {
+
+    }
 </script>
