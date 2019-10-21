@@ -15,12 +15,12 @@
       </nav>
 
       <nav class="nav-lg">
-        <v-btn text><router-link style="text-decoration:none; color:black;" to='/'>Home</router-link></v-btn>
-        <v-btn text><router-link style="text-decoration:none; color:black;" to='/about'>About</router-link></v-btn>
-        <v-btn text><router-link style="text-decoration:none; color:black;" to='/contact'>Contact</router-link></v-btn>
-        <v-btn text v-if="!user"><router-link style="text-decoration:none; color:black;" to='/login'>Login / Sign Up</router-link></v-btn>
-        <v-btn text v-if="user"><router-link style="text-decoration:none; color:black;" to='/plan'>Plan Event</router-link></v-btn>
-        <v-btn text v-if="user"><router-link style="text-decoration:none; color:black;" to='/account' v-if="user">Account</router-link></v-btn>
+        <v-btn text><router-link to='/home'>Home</router-link></v-btn>
+        <v-btn text><router-link to='/about'>About</router-link></v-btn>
+        <v-btn text><router-link to='/contact'>Contact</router-link></v-btn>
+        <v-btn text v-if="!user"><router-link to='/login'>Login / Sign Up</router-link></v-btn>
+        <v-btn text v-if="user"><router-link to='/plan'>Plan Event</router-link></v-btn>
+        <v-btn text v-if="user"><router-link to='/account' v-if="user">Account</router-link></v-btn>
         <v-btn text @click="logout" v-if="user">Logout</v-btn>
       </nav>
 
@@ -28,7 +28,7 @@
 
     <transition name="slide" mode="out-in">
         <v-container class="d-flex flex-column align-center mt-5" id="menu-wrap" v-if="isMenuOpen">
-            <v-btn height="60" text @click="isMenuOpen = false"><router-link style="text-decoration:none; color:black; font-size:16pt;" to='/'>Home</router-link></v-btn>
+            <v-btn height="60" text @click="isMenuOpen = false"><router-link style="text-decoration:none; color:black; font-size:16pt;" to='/home'>Home</router-link></v-btn>
             <v-btn height="60" text @click="isMenuOpen = false"><router-link style="text-decoration:none; color:black; font-size:16pt;" to='/about'>About</router-link></v-btn>
             <v-btn height="60" text @click="isMenuOpen = false"><router-link style="text-decoration:none; color:black; font-size:16pt;" to='/contact'>Contact</router-link></v-btn>
             <v-btn height="60" text @click="isMenuOpen = false" v-if="!user"><router-link style="text-decoration:none; color:black; font-size:16pt;" to='/login'>Login / Sign Up</router-link></v-btn>
@@ -77,7 +77,7 @@
           null
         }
       }
-    },  
+    },
     methods: {
       logout() {
         Firebase.auth().signOut()
@@ -152,11 +152,25 @@
         width: 100%;
       }
     }
+    .router-link-exact-active {
+      color: #1976D2 !important;
+    }
 
     // For medium screens
     @media only screen and (min-width: 48rem) {
       .nav-lg {
         display: initial;
+      }
+      .nav-lg {
+        button {
+          a {
+            text-decoration: none;
+            color: black;
+          }
+        }
+      }
+      .router-link-active, .router-link-exact-active {
+        color: #1976D2;
       }
       .nav-sm {
         display: none;

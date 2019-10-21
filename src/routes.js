@@ -10,6 +10,13 @@ import Err404 from './components/404.vue';
 export const routes = [
     {
       path: '/',
+      redirect: '/home',
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: '/home',
       component: Home,
       meta: {
         requiresAuth: false
