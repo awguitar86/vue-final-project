@@ -1,9 +1,9 @@
 <template>
   <v-app class="d-flex flex-colunm align-center">
     <v-app-bar app style="z-index:1020;">
-      <router-link to="/">
-        <v-img src='./assets/IC_logo.jpg' class="icon-logo" max-width="100" max-height="50">
-      </v-img></router-link>
+      <router-link to="/home" class="d-flex align-center justify-center">
+        <img src='./assets/ICKnifeLogo.svg' alt="logo" id="icon-logo"/>
+      </router-link>
       <v-spacer></v-spacer>
       <nav class="nav-sm">
         <v-btn id="ham-menu" v-if="!isMenuOpen" icon @click="menuToggle">
@@ -100,6 +100,10 @@
 <style scoped lang="scss">
     body {
         padding: 30px;
+    }
+    #icon-logo {
+      width: 80px;
+      height: auto;
     }
     .slide-enter-active {
         animation: slide-in 200ms ease-out forwards;

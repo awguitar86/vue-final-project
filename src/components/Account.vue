@@ -1,6 +1,6 @@
 <template>
     <v-container class="d-flex flex-column align-center mt-5">
-        <h2 class="headline text-uppercase">Welcome to your Account {{ userName }}!</h2>
+        <h2 class="text-uppercase" id="account-header">Welcome, {{ userName }}!</h2>
     </v-container>
 </template>
 <script>
@@ -15,3 +15,8 @@
         
     }
 </script>
+<style lang="scss" scoped>
+    #account-header {
+        font-weight: 400;
+    }
+</style>

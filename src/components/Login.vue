@@ -23,7 +23,7 @@
                 color="primary"
                 depressed
             >Login</v-btn> 
-            <p class="mt-4">You don't have an account? You can <router-link to='signup'>create one</router-link>!</p>
+            <p class="mt-4">You don't have an account? <router-link to='signup'>Create one!</router-link></p>
             <br><br>
             <v-alert type="error" v-if="alert">{{ alertText }}</v-alert>
         </v-form>

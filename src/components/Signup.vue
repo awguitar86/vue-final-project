@@ -1,6 +1,6 @@
 <template>
     <v-container class="d-flex flex-column align-center mt-5">
-        <h2 class="headline text-uppercase">Let's create a new account!</h2>
+        <h2 class="headline text-uppercase">Sign Up</h2>
         <v-form id="login-form" class="mt-4">
             <v-text-field
                 v-model="name"
@@ -33,11 +33,12 @@
                 @click="signUp" 
                 :disabled="confirmPassword !== password"
                 class="mt-4 mr-4"
+                id="signup-btn"
                 color="primary"
                 depressed
             >Sign Up</v-btn> 
             <router-link to="./login">
-                <v-btn class="mt-4" depressed>Back to Login</v-btn>
+                <v-btn class="mt-4" id="back-to-login" depressed>Back to Login</v-btn>
             </router-link>
             <v-alert type="error" dense v-if="confirmPassword !== password" class="mt-4">Passwords Do Not Match!</v-alert>
         </v-form>    
@@ -85,6 +86,20 @@
 
 <style scoped>
     #login-form {
-        width: 40%;
+        width: 90%;
+    }
+    #signup-btn {
+        width: 100%;
+        height: 50px;
+    }
+    #back-to-login {
+        width: 100%;
+
+    }
+
+    @media only screen and (min-width : 48rem) {
+        #login-form {
+            width: 40%;
+        }
     }
 </style>
