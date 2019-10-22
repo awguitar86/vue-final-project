@@ -4,15 +4,13 @@
     </v-container>
 </template>
 <script>
-    import Firebase from 'firebase';
-
     export default {
         data() {
             return {
                 userName: this.$store.getters.getUser.displayName
             }
         },
-        
+
     }
 </script>
 <style lang="scss" scoped>

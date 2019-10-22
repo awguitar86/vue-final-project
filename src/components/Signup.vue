@@ -29,19 +29,19 @@
                 type="password"
                 required
             ></v-text-field>
-            <v-btn 
-                @click="signUp" 
+            <v-btn
+                @click="signUp"
                 :disabled="confirmPassword !== password"
                 class="mt-4 mr-4"
                 id="signup-btn"
                 color="primary"
                 depressed
-            >Sign Up</v-btn> 
+            >Sign Up</v-btn>
             <router-link to="./login">
                 <v-btn class="mt-4" id="back-to-login" depressed>Back to Login</v-btn>
             </router-link>
             <v-alert type="error" dense v-if="confirmPassword !== password" class="mt-4">Passwords Do Not Match!</v-alert>
-        </v-form>    
+        </v-form>
     </v-container>
 </template>
 
@@ -74,6 +74,7 @@
                         Firebase.auth().onAuthStateChanged(user => user.updateProfile({displayName: this.name}));
                         this.$router.replace('account');
                         this.$store.dispatch('setUser');
+                        console.log(user);
                     },
                     err => {
                         alert(`Oops. ${err.message}`)
