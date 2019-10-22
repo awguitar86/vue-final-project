@@ -1,6 +1,6 @@
 <template>
   <v-app class="d-flex flex-colunm align-center">
-    <v-app-bar app style="z-index:1020;">
+    <div id="header" style="z-index:1020;">
       <router-link to="/home" class="d-flex align-center justify-center">
         <img src='./assets/ICKnifeLogo.svg' alt="logo" id="icon-logo"/>
       </router-link>
@@ -24,10 +24,10 @@
         <v-btn text @click="logout" v-if="user">Logout</v-btn>
       </nav>
 
-    </v-app-bar>
+    </div>
 
     <transition name="slide" mode="out-in">
-        <v-container class="d-flex flex-column align-center mt-5" id="menu-wrap" v-if="isMenuOpen">
+        <v-container class="d-flex flex-column align-center" id="menu-wrap" v-if="isMenuOpen">
             <v-btn height="60" text @click="isMenuOpen = false"><router-link style="text-decoration:none; color:black; font-size:16pt;" to='/home'>Home</router-link></v-btn>
             <v-btn height="60" text @click="isMenuOpen = false"><router-link style="text-decoration:none; color:black; font-size:16pt;" to='/about'>About</router-link></v-btn>
             <v-btn height="60" text @click="isMenuOpen = false"><router-link style="text-decoration:none; color:black; font-size:16pt;" to='/contact'>Contact</router-link></v-btn>
@@ -44,6 +44,10 @@
         </transition>
     </v-content>
     <v-snackbar v-model="snackbar" color="success" right>{{ snackbarText }}</v-snackbar>
+
+    <div id="footer" class="d-flex align-center justify-center">
+      <p>© 2019 Icon Culinary</p>
+    </div>
   </v-app>
 </template>
 
@@ -98,8 +102,20 @@
 </script>
 
 <style scoped lang="scss">
+    @import './_variables.scss';
+
     body {
         padding: 30px;
+    }
+    #header {
+      width: 100vw;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0px 20px 0px 20px;
+      box-shadow: 0 0px 20px rgba(0, 0, 0, 0.4);
+      background: $light;
     }
     #icon-logo {
       width: 80px;
@@ -147,17 +163,29 @@
     #menu-wrap {
       width: 100vw;
       height: 100vh;
-      background: white;
+      background: $light;
       left: 0;
-      top: 40px;
+      top: 56px;
       position: absolute;
       z-index: 1000;
       .v-btn {
         width: 100%;
+        font-family: $font;
       }
     }
     .router-link-exact-active {
-      color: #1976D2 !important;
+      color: $second !important;
+    }
+
+    #footer {
+      width: 100vw;
+      height: 50px;
+      background: $dark;
+      p {
+        font-family: $font;
+        color: $light;
+        margin: 0;
+      }
     }
 
     // For medium screens
@@ -174,7 +202,7 @@
         }
       }
       .router-link-active, .router-link-exact-active {
-        color: #1976D2;
+        color: $second;
       }
       .nav-sm {
         display: none;
