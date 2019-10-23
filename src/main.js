@@ -31,6 +31,17 @@ router.beforeEach((to, from, next) => {
 });
 
 Vue.http.options.root = config.databaseURL;
+Vue.http.interceptors.push((req, next) => {
+  console.log(req);
+  if(req.method == "POST"){
+    req.method = "PUT";
+  }
+  next(res => {
+    res.json = () => {
+      return {messages: res.body}
+    }
+  });
+});
 
 Firebase.initializeApp(config);
 Firebase.analytics();

@@ -1,8 +1,8 @@
 <template>
     <div>
         <div id="hero">
-            <div id="hero-overlay" class="d-flex flex-column justify-end align-center">
-                <div class="d-flex flex-column justify-end align-center ">
+            <div id="hero-overlay" class="d-flex flex-column justify-center align-center">
+                <div class="d-flex flex-column justify-end align-center" id="hero-text-wrap">
                     <h1 class="text-uppercase">The<br/>Living<br/>Planet Events!</h1>
                     <h2>You plan your event,<br/>We tak care of the rest.</h2>
                     <router-link to="/signup" style="width:100%;" class="d-flex justify-center"><v-btn color="primary" class="mt-5" id="plan-event-btn">Plan Your Event</v-btn></router-link>
@@ -30,15 +30,18 @@
     #hero {
         width: 100vw;
         height: 100vh;
-        background: url('../assets/smallPies.jpg') no-repeat;
+        background: url('../assets/peopleBySharks.jpg') no-repeat;
         background-size: cover;
-        background-position: center;
+        background-position: 50% 0%;
         background-attachment: fixed;
     }
     #hero-overlay {
         width: 100%;
         height: 100%;
         background: rgba(0,0,0,0.5);
+    }
+    #hero-text-wrap {
+        width: 100%;
         h1 {
             width: 90%;
             font-family: $font;
