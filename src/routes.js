@@ -71,6 +71,5 @@ export const routes = [
       meta: {
         requiresAuth: false
       }
-
     }
 ];

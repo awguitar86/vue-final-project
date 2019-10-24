@@ -3,11 +3,13 @@ import VueResource from 'vue-resource';
 import VueRouter from 'vue-router';
 import vuetify from './plugins/vuetify';
 import App from './App.vue'
-import store from './store/store';
+import { store } from './store';
 import { routes } from './routes';
 
 import Firebase from 'firebase';
-import {config} from './firebase.config';
+import { config } from './firebaseConfig';
+Firebase.initializeApp(config)
+Firebase.analytics();
 
 Vue.config.productionTip = false;
 Vue.use(VueResource);
@@ -42,9 +44,6 @@ Vue.http.interceptors.push((req, next) => {
     }
   });
 });
-
-Firebase.initializeApp(config);
-Firebase.analytics();
 
 new Vue({
   vuetify,
