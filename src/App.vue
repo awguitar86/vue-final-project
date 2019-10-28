@@ -63,6 +63,9 @@
         isMenuOpen: false
       }
     },
+    beforeCreate() {
+      this.$store.dispatch('retrieveUser')
+    },
     computed: {
       user() {
         if(this.$store.getters.getUser) {

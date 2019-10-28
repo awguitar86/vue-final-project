@@ -3,3 +3,4 @@
         <h1 class="headline text-uppercase">About Component</h1>
     </v-container>
 </template>
+

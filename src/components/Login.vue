@@ -51,6 +51,15 @@
                 alertText: ''
             }
         },
+        beforeCreate() {
+            Firebase.auth().onAuthStateChanged((user) => {
+                if(user === null) {
+                    null;
+                } else {
+                    this.$router.push('account')
+                }
+            })
+        },
         methods: {
             login() {
                 Firebase.auth().signInWithEmailAndPassword(this.email, this.password)
