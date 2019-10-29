@@ -6,7 +6,8 @@ Vue.use(Vuex);
 
 export const store = new Vuex.Store({
     state: {
-        user: null
+        user: null,
+        eventPlan: null
     },
     
     mutations: {
@@ -20,17 +21,22 @@ export const store = new Vuex.Store({
                     state.user = user
                 }
             })
-        }
+        },
+        'SET_EVENT_PLAN': (state, plan) => state.eventPlan = plan,
+        'DELETE_EVENT_PLAN': state => state.eventPlan = null
     },
     
     actions: {
-        setUser: (context) => context.commit('SET_USER'),
-        deleteUser: (context) => context.commit('DELETE_USER'),
-        retrieveUser: (context) => context.commit('RETRIEVE_USER')
+        setUser: ({commit}) => commit('SET_USER'),
+        deleteUser: ({commit}) => commit('DELETE_USER'),
+        retrieveUser: ({commit}) => commit('RETRIEVE_USER'),
+        setEventPlan: ({commit}, plan) => commit('SET_EVENT_PLAN', plan),
+        deleteEventPlan: ({commit}) => commit('DELETE_EVENT_PLAN')
     },
     
     getters: {
         getUser: state => state.user,
-        getUid: state => state.user ? state.user.uid : null
+        getUid: state => state.user ? state.user.uid : null,
+        getEventPlan: state => state.eventPlan
     },
 });

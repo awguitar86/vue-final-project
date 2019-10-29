@@ -91,7 +91,8 @@
         .then(() => {
           this.$router.replace('/');
           this.$store.dispatch('deleteUser');
-          this.snackbarText = 'Successfully Logged Out.'
+          this.$store.dispatch('deleteEventPlan');
+          this.snackbarText = 'Successfully Logged Out.';
           this.snackbar = true;
           this.isMenuOpen = false;
         })

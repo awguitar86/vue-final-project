@@ -69,6 +69,10 @@
                         this.$store.dispatch('setUser');
                         this.snackbar = true;
                         console.log(user);
+                        this.$http.get(`${user.user.uid}.json`)
+                        .then( res => {
+                            this.$store.dispatch('setEventPlan', res.body);
+                        });
                     },
                     err => {
                         this.alertText = `Oops. ${err.message}`
