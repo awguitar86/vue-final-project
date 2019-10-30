@@ -6,21 +6,21 @@
             <v-text-field v-model="event.company" label="Company Name" type="text" required></v-text-field>
             <v-text-field v-model="event.companyRepName" label="Company Representative Name" type="text" required></v-text-field>
             <p class="event-picker">Event Date</p>
-            <v-date-picker v-model="event.eventDate" no-title class="mb-4"></v-date-picker>
+            <v-date-picker v-model="event.eventDate" no-title class="mb-4" required></v-date-picker>
             <p class="event-picker">Event Start Time</p>
-            <v-time-picker v-model="event.startTime" ampm-in-title :allowed-minutes="allowedMinutes" color="green accent-4" class="mb-4"></v-time-picker>
+            <v-time-picker v-model="event.startTime" ampm-in-title :allowed-minutes="allowedMinutes" color="green accent-4" class="mb-4" required></v-time-picker>
             <p class="event-picker">Event End Time</p>
-            <v-time-picker v-model="event.endTime" ampm-in-title :allowed-minutes="allowedMinutes" color="red darken-4" class="mb-4"></v-time-picker>
+            <v-time-picker v-model="event.endTime" ampm-in-title :allowed-minutes="allowedMinutes" color="red darken-4" class="mb-4" required></v-time-picker>
             <v-text-field v-model="event.peopleCount" label="Number of People" type="text" required></v-text-field>
             <p class="event-picker">Number of Courses: {{ event.foodCourseCount }}</p>
-            <v-slider v-model="event.foodCourseCount" min="1" max="7" ticks="always" tick-size="4" :tick-labels="foodCourseTickLabels" class="mt-0"></v-slider>
-            <v-text-field v-model="event.mainFoodCourse" label="Main Course" type="text"></v-text-field>
-            <v-text-field v-model="event.beverages" label="Beverages" type="text"></v-text-field>
-            <v-text-field v-model="event.allergies" label="Food Allergies" type="text"></v-text-field>
-            <v-text-field v-model="event.foodLifestyles" label="Food Lifestyles" type="text"></v-text-field>
-            <v-radio-group row>
-                <v-radio label="Plated" value="plated" v-model="event.platedOrBuffet"></v-radio>
-                <v-radio label="Buffet" value="buffet" v-model="event.platedOrBuffet"></v-radio>
+            <v-slider v-model="event.foodCourseCount" min="1" max="7" ticks="always" tick-size="4" :tick-labels="foodCourseTickLabels" class="mt-0" required></v-slider>
+            <v-text-field v-model="event.mainFoodCourse" label="Main Course" type="text" required></v-text-field>
+            <v-text-field v-model="event.beverages" label="Beverages" type="text" required></v-text-field>
+            <v-text-field v-model="event.allergies" label="Food Allergies" type="text" required></v-text-field>
+            <v-text-field v-model="event.foodLifestyles" label="Food Lifestyles" type="text" required></v-text-field>
+            <v-radio-group row v-model="event.platedOrBuffet">
+                <v-radio label="Plated" value="plated"></v-radio>
+                <v-radio label="Buffet" value="buffet"></v-radio>
             </v-radio-group>
             <div class="boolean-selects d-flex align-center justify-space-between">
                 <v-switch v-model="event.useGlassware" label="Use Glassware" color="success"></v-switch>
@@ -39,8 +39,6 @@
             <p class="event-picker">Number of Serpentine Tables: {{ event.serpentineTableCount }}</p>
             <v-slider v-model="event.serpentineTableCount" min="0" max="20" ticks="always" tick-size="2" class="mt-0"></v-slider>
             <v-textarea v-model="event.specialRequests" label="Special Requests" type="text"></v-textarea>
-            
-            <Stripe></Stripe>
 
             <v-btn @click="addEvent" class="mt-6" id="event-btn" color="primary" depressed>Submit</v-btn> 
         </div>
@@ -56,7 +54,6 @@
 </template>
 
 <script>
-    import Stripe from './Stripe.vue';
     export default {
         data() {
             return {
@@ -73,7 +70,6 @@
                     companyRepName: '',
                     endTime: '',
                     eventDate: '',
-                    downPayment: '',
                     foodCourseCount: 1,
                     mainFoodCourse: '',
                     foodLifestyles: '',
@@ -81,7 +77,7 @@
                     needsCoatCheck: false,
                     needsWholeAquarium: false,
                     peopleCount: '',
-                    platedOrBuffet: '',
+                    platedOrBuffet: 'buffet',
                     roundTableCount: 0,
                     serpentineTableCount: 0,
                     specialRequests: '',
@@ -90,7 +86,7 @@
                     useGlassware: false,
                     useSilverware: false,
                 },
-                resource: {}
+                resource: {},
             }
         },
         methods: {
@@ -108,9 +104,6 @@
                 saveEvent: {method: 'POST', url: `${this.userId}.json`}
             }
             this.resource = this.$resource('data.json', {}, customActions)
-        },
-        components: {
-            Stripe
         }
     }
 </script>
@@ -156,6 +149,7 @@
             width: 100%;
         }
     }
+
 
     @media only screen and (min-width: 48rem) {
         #event-form {

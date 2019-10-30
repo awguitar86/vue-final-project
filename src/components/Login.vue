@@ -65,14 +65,9 @@
                 Firebase.auth().signInWithEmailAndPassword(this.email, this.password)
                 .then(
                     user => {
-                        this.$router.replace('account');
                         this.$store.dispatch('setUser');
-                        this.snackbar = true;
                         console.log(user);
-                        this.$http.get(`${user.user.uid}.json`)
-                        .then( res => {
-                            this.$store.dispatch('setEventPlan', res.body);
-                        });
+                        this.$router.replace('account');
                     },
                     err => {
                         this.alertText = `Oops. ${err.message}`
