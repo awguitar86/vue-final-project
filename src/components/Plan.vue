@@ -18,15 +18,29 @@
             <v-text-field v-model="event.beverages" label="Beverages" type="text"></v-text-field>
             <v-text-field v-model="event.allergies" label="Food Allergies" type="text"></v-text-field>
             <v-text-field v-model="event.foodLifestyles" label="Food Lifestyles" type="text"></v-text-field>
-            <v-text-field v-model="event.mainFoodCourse" label="Main Course" type="text"></v-text-field>
-            <v-radio-group v-model="row" row>
+            <v-radio-group row>
                 <v-radio label="Plated" value="plated" v-model="event.platedOrBuffet"></v-radio>
                 <v-radio label="Buffet" value="buffet" v-model="event.platedOrBuffet"></v-radio>
             </v-radio-group>
-            <div id="glassware-silverware" class="d-flex align-center justify-space-between">
-                <v-switch v-model="event.useGlassware" label="Use Glassware"></v-switch>
-                <v-switch v-model="event.useSilverware" label="Use Silverware"></v-switch>
+            <div class="boolean-selects d-flex align-center justify-space-between">
+                <v-switch v-model="event.useGlassware" label="Use Glassware" color="success"></v-switch>
+                <v-switch v-model="event.useSilverware" label="Use Silverware" color="success"></v-switch>
             </div>
+            <div class="boolean-selects d-flex align-center justify-space-between">
+                <v-switch v-model="event.needsWholeAquarium" label="Need Whole Aquarium" color="success"></v-switch>
+                <v-switch v-model="event.needsCoatCheck" label="Need Coat Check" color="success"></v-switch>
+            </div>
+            <p class="event-picker">Number of Round Tables: {{ event.roundTableCount }}</p>
+            <v-slider v-model="event.roundTableCount" min="0" max="20" ticks="always" tick-size="2" class="mt-0"></v-slider>
+            <p class="event-picker">Number of Long Tables: {{ event.longTableCount }}</p>
+            <v-slider v-model="event.longTableCount" min="0" max="20" ticks="always" tick-size="2" class="mt-0"></v-slider>
+            <p class="event-picker">Number of Tall Tables: {{ event.tallTableCount }}</p>
+            <v-slider v-model="event.tallTableCount" min="0" max="20" ticks="always" tick-size="2" class="mt-0"></v-slider>
+            <p class="event-picker">Number of Serpentine Tables: {{ event.serpentineTableCount }}</p>
+            <v-slider v-model="event.serpentineTableCount" min="0" max="20" ticks="always" tick-size="2" class="mt-0"></v-slider>
+            <v-textarea v-model="event.specialRequests" label="Special Requests" type="text"></v-textarea>
+            
+            <Stripe></Stripe>
 
             <v-btn @click="addEvent" class="mt-6" id="event-btn" color="primary" depressed>Submit</v-btn> 
         </div>
@@ -42,7 +56,7 @@
 </template>
 
 <script>
-
+    import Stripe from './Stripe.vue';
     export default {
         data() {
             return {
@@ -63,20 +77,16 @@
                     foodCourseCount: 1,
                     mainFoodCourse: '',
                     foodLifestyles: '',
-                    longTableCount: '',
-                    needsCoatCheck: '',
-                    needsDecorations: false,
-                    needsDj: false,
-                    needsMicrophone: false,
+                    longTableCount: 0,
+                    needsCoatCheck: false,
                     needsWholeAquarium: false,
                     peopleCount: '',
                     platedOrBuffet: '',
-                    roundTableCount: '',
-                    serpentineTableCount: '',
+                    roundTableCount: 0,
+                    serpentineTableCount: 0,
                     specialRequests: '',
                     startTime: '',
-                    tableClothColor: '',
-                    tallTableCount: '',
+                    tallTableCount: 0,
                     useGlassware: false,
                     useSilverware: false,
                 },
@@ -98,6 +108,9 @@
                 saveEvent: {method: 'POST', url: `${this.userId}.json`}
             }
             this.resource = this.$resource('data.json', {}, customActions)
+        },
+        components: {
+            Stripe
         }
     }
 </script>
@@ -125,7 +138,7 @@
         width: 100%;
         height: 50px;
     }
-    #glassware-silverware {
+    .boolean-selects {
         width: 100%;
     }
 
