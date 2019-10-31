@@ -1,12 +1,13 @@
 <template>
     <v-container class="d-flex flex-column align-center mt-5">
         <h2 class="headline text-uppercase">Login</h2>
-        <v-form id="login-form" class="mt-4">
+        <v-form id="login-form" class="mt-4 d-flex flex-column align-center">
             <v-text-field
                 v-model="email"
                 :rules="emailRules"
                 label="Email"
                 type="email"
+                id="email-input"
                 required
             ></v-text-field>
             <v-text-field
@@ -14,6 +15,7 @@
                 :rules="passwordRules"
                 label="Password"
                 type="password"
+                id="password-input"
                 required
             ></v-text-field>
             <v-btn 
@@ -23,7 +25,8 @@
                 color="primary"
                 depressed
             >Login</v-btn> 
-            <p class="mt-4">You don't have an account? <router-link to='signup'>Create one!</router-link></p>
+            <p id="forgot-password" class="mt-6"><router-link to='/forgot-password'>Forgot Password?</router-link></p>
+            <p class="mt-2">You don't have an account? <router-link to='/signup'>Create one!</router-link></p>
             <br><br>
             <v-alert type="error" v-if="alert">{{ alertText }}</v-alert>
         </v-form>
@@ -82,6 +85,9 @@
 <style scoped lang="scss">
     #login-form {
         width: 90%;
+        .v-input {
+            width: 100%;
+        }
     }
     #login-btn {
         width: 100%;

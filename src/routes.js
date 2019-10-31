@@ -2,6 +2,7 @@ import Home from './components/Home.vue';
 import About from './components/About.vue';
 import Contact from './components/Contact.vue';
 import Login from './components/Login.vue';
+import ForgotPassword from './components/ForgotPassword.vue';
 import Signup from './components/Signup.vue';
 import Plan from './components/Plan.vue';
 import Account from './components/Account.vue';
@@ -39,6 +40,13 @@ export const routes = [
     {
       path: '/login',
       component: Login,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: '/forgot-password',
+      component: ForgotPassword,
       meta: {
         requiresAuth: false
       }

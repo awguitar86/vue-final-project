@@ -1,7 +1,7 @@
 <template>
     <v-container class="d-flex flex-column align-center mt-5">
         <h2 class="headline text-uppercase">Sign Up</h2>
-        <v-form id="login-form" class="mt-4">
+        <v-form id="login-form" class="mt-4 d-flex flex-column align-center">
             <v-text-field
                 v-model="name"
                 label="Name"
@@ -32,14 +32,12 @@
             <v-btn
                 @click="signUp"
                 :disabled="confirmPassword !== password"
-                class="mt-4 mr-4"
+                class="mt-4"
                 id="signup-btn"
                 color="primary"
                 depressed
             >Sign Up</v-btn>
-            <router-link to="./login">
-                <v-btn class="mt-4" id="back-to-login" depressed>Back to Login</v-btn>
-            </router-link>
+            <p class="mt-4"><router-link to="./login">Back to Login</router-link></p>
             <v-alert type="error" dense v-if="confirmPassword !== password" class="mt-4">Passwords Do Not Match!</v-alert>
         </v-form>
     </v-container>
@@ -85,9 +83,12 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
     #login-form {
         width: 90%;
+        .v-input {
+            width: 100%;
+        }
     }
     #signup-btn {
         width: 100%;
