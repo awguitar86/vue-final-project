@@ -1,3 +1,6 @@
+import Firebase from 'firebase';
+import { config } from './firebaseConfig';
+Firebase.initializeApp(config)
 import Vue from 'vue'
 import VueResource from 'vue-resource';
 import VueRouter from 'vue-router';
@@ -6,9 +9,6 @@ import App from './App.vue'
 import { store } from './store';
 import { routes } from './routes';
 
-import Firebase from 'firebase';
-import { config } from './firebaseConfig';
-Firebase.initializeApp(config)
 Firebase.analytics();
 
 Vue.config.productionTip = false;

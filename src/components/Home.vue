@@ -30,7 +30,7 @@
     #hero {
         width: 100vw;
         height: 100vh;
-        background: url('../assets/peopleBySharks.jpg') no-repeat;
+        background: url('../assets/decoratedTable.jpg') no-repeat;
         background-size: cover;
         background-position: 50% 0%;
         background-attachment: fixed;
