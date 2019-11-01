@@ -1,40 +1,72 @@
 <template>
-    <div class="change-password-form mt-4 d-flex flex-column align-center">
+    <div id="change-password-form" class="mt-4 d-flex flex-column align-center pb-8">
         <v-text-field
             v-model="newPassword"
             :rules="passwordRules"
-            label="Email"
-            type="email"
-            id="email-input"
+            label="New Password"
+            type="password"
             required
         ></v-text-field>
         <v-text-field
             v-model="confirmNewPassword"
             :rules="passwordRules"
-            label="Password"
+            label="Confirm New Password"
             type="password"
-            id="password-input"
             required
         ></v-text-field>
         <v-btn 
             @click="changePassword" 
             class="mt-4"
-            id="login-btn"
+            width="90%"
+            height="50px"
+            id="password-btn"
             color="primary"
             depressed
         >Submit</v-btn> 
+        <v-alert type="error" dense v-if="error" class="mt-4">Error {{ error }}</v-alert>
     </div>
 </template>
 
 <script>
+import Firebase from 'firebase';
 export default {
-    props: ['newPassword', 'confirmNewPassword', 'changePassword', 'passwordRules']
+    data() {
+        return {
+            newPassword: '',
+            confirmNewPassword: '',
+            passwordRules: [
+                v => !!v || 'Password is required',
+                v => v.length >= 10 || 'Password must be at least 10 characters',
+            ],
+            confirmPasswordRules: [
+                v => !!v || 'Password is required',
+                v => v.length >= 10 || 'Password must be at least 10 characters',
+                v => v === this.newPassword || 'Passwords must match.'
+            ],
+            error: '',
+            isError: false
+        }
+    },
+    methods: {
+        changePassword() {
+            Firebase.auth().currentUser.updatePassword(this.newPassword).then((res) => {
+                this.$emit('updatePasswordComplete', true);
+                console.log(res);
+            }).catch( err => {
+                this.error = err;
+                throw err;
+                
+            });
+        }
+    },
 }
 </script>
 <style lang="scss" scoped>
     @import '../_variables';
-    .change-password-form {
-        width: 90%;
-        background: $light;
+    #change-password-form {
+        width: 100%;
     }
-</style>    
+    .v-input {
+        width: 90%;
+    }
+</style>

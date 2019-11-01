@@ -5,8 +5,8 @@
         <p class="account-info mt-4">{{ this.userName }}</p>
         <p class="account-info">{{ this.userEmail }}</p>   
         <div id="edit-account-btns" class="d-flex align-center mt-5">
-            <p class="mr-5" @click="isEmailDialogOpen = !isEmailDialogOpen">Edit Email</p>
-            <p>Change Password</p>
+            <p class="mr-5" @click="isEmailModalOpen = !isEmailModalOpen">Edit Email</p>
+            <p @click="isPasswordModalOpen = !isPasswordModalOpen">Change Password</p>
         </div>   
 
         <h3 class="text-uppercase mt-4 mb-3 events-header">Events</h3>
@@ -42,21 +42,33 @@
         </v-expansion-panels>
         <p v-else>No events scheduled</p>
 
-        <div v-if="isEmailDialogOpen" id="emailModal" class="d-flex flex-column align-center justify-start">
-            <div class="email-modal-wrap d-flex flex-column align-center">
-                <p class="close-email-modal" @click="isEmailDialogOpen = !isEmailDialogOpen"><v-icon size="28" color="blue-grey darken-3">mdi-close</v-icon></p>
-                <EditEmail :newEmail="newEmail" :confirmNewEmail="confirmNewEmail" :editEmail="editEmail" :emailRules="emailRules"></EditEmail>
+        <div v-if="isEmailModalOpen" id="emailModal" class="d-flex flex-column align-center justify-start">
+            <div class="modal-wrap d-flex flex-column align-center" v-if="!editEmailComplete">
+                <p class="close-modal mt-2" @click="isEmailModalOpen = !isEmailModalOpen"><v-icon size="28" color="blue-grey darken-3">mdi-close</v-icon></p>
+                <EditEmail @updateEmailComplete="updateEmailModal($event)"></EditEmail>
+            </div>
+            <div class="modal-complete-wrap d-flex flex-column align-center pt-3 pb-12" v-else>
+                <p class="close-modal" @click="isEmailModalOpen = !isEmailModalOpen"><v-icon size="28" color="blue-grey darken-3">mdi-close</v-icon></p>
+                <v-icon size="60" color="green accent-4" class="mt-5 mb-5">mdi-checkbox-marked-circle-outline</v-icon>
+                <h3 class="text-uppercase">Your email has been changed!</h3>
             </div>
         </div>
 
-        <div v-if="isPasswordDialogOpen" width="100%" id="passwordModal">
-            <ChangePassword :newPassword="newPassword" :confirmNewPassword="confirmNewPassword" :changePassword="changePassword" :passwordRules="passwordRules"></ChangePassword>
+        <div v-if="isPasswordModalOpen" id="passwordModal" class="d-flex flex-column align-center justify-start">
+            <div class="modal-wrap d-flex flex-column align-center" v-if="!isChangePasswordComplete">
+                <p class="close-modal mt-2" @click="isPasswordModalOpen = !isPasswordModalOpen"><v-icon size="28" color="blue-grey darken-3">mdi-close</v-icon></p>
+                <ChangePassword @updatePasswordComplete="updatePassword($event)"></ChangePassword>
+            </div>
+            <div class="modal-complete-wrap d-flex flex-column align-center pt-3 pb-12" v-else>
+                <p class="close-modal" @click="isPasswordModalOpen = !isPasswordModalOpen"><v-icon size="28" color="blue-grey darken-3">mdi-close</v-icon></p>
+                <v-icon size="60" color="green accent-4" class="mt-5 mb-5">mdi-checkbox-marked-circle-outline</v-icon>
+                <h3 class="text-uppercase">Your password has been changed!</h3>
+            </div>
         </div>
 
     </v-container>
 </template>
 <script>
-    import Firebase from 'firebase';
     import EventItem from './EventItem.vue';
     import EditEmail from './EditEmail.vue';
     import ChangePassword from './ChangePassword.vue';
@@ -67,32 +79,30 @@
                 userEmail: this.$store.getters.getUser.email,
                 userEventPlan: [],
                 hasEvent: false,
-                isEmailDialogOpen: true,
-                isPasswordDialogOpen: false,
-                newEmail: '',
-                confirmNewEmail: '',
-                emailRules: [
-                    v => !!v || 'E-mail is required',
-                    v => /.+@.+/.test(v) || 'E-mail must be valid'
-                ],
-                newPassword: '',
-                confirmNewPassword: '',
-                passwordRules: [
-                    v => !!v || 'Password is required',
-                    v => v.length >= 10 || 'Password must be at least 10 characters',
-                ]
+                isEmailModalOpen: false,
+                editEmailComplete: false,
+                isPasswordModalOpen: false,
+                isChangePasswordComplete: false
             }
         },
         methods: {
-            editEmail() {
-                Firebase.auth().currentUser.updateEmail(this.newEmail).then( (res) => {
-                    console.log(res);
-                }).catch( err => {throw err});
+            updateEmailModal(e) {
+                console.log(e);
+                this.editEmailComplete = e;
+                let vm = this;
+                setTimeout(() => {
+                    vm.isEmailModalOpen = false;
+                    vm.editEmailComplete = false;
+                    this.userEmail = this.$store.getters.getUser.email
+                }, 2000);
             },
-            changePassword() {
-                Firebase.auth().currentUser.updatePassword(this.password).then((res) => {
-                    console.log(res);
-                }).catch( err => {throw err});
+            updatePassword(e) {
+                this.isChangePasswordComplete = e;
+                let vm = this;
+                setTimeout(() => {
+                    vm.isPasswordModalOpen = false;
+                    vm.isChangePasswordComplete = false;
+                }, 2000);
             }
         },
         created(){
@@ -157,25 +167,32 @@
         z-index: 2000000;
         background: rgba(0,0,0,0.3);
     }
-    .close-email-modal {
+    #passwordModal {
+        width: 100vw;
+        height: 100vh;
+        position: absolute;
+        z-index: 2000000;
+        background: rgba(0,0,0,0.3);
+    }
+    .close-modal {
         width: 90%;
         text-align: right;
         cursor: pointer;
         margin: 0;
-        margin-top: 10px;
     }
-    .email-modal-wrap {
+    .modal-wrap {
         width: 90%;
         background: $light;
         margin-top: 20px;
         border-radius: 5px;
     }
-    .email-close-modal {
-        margin: 0;
-        margin-top: 15px;
-        width: 85%;
-        text-align: right;
-        color: $prime;
-        cursor: pointer;
+    .modal-complete-wrap {
+        width: 90%;
+        background: $light;
+        margin-top: 20px;
+        border-radius: 5px;
+        h2 {
+            text-align: center;
+        }
     }
 </style>

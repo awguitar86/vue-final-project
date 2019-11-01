@@ -2,10 +2,10 @@
     <div>
         <div id="hero">
             <div id="hero-overlay" class="d-flex flex-column justify-center align-center">
-                <div class="d-flex flex-column justify-end align-center" id="hero-text-wrap">
+                <div id="hero-text-wrap" class="d-flex flex-column justify-end align-center">
                     <h1 class="text-uppercase">The<br/>Living<br/>Planet Events!</h1>
                     <h2>You plan your event,<br/>We tak care of the rest.</h2>
-                    <router-link to="/signup" style="width:100%;" class="d-flex justify-center"><v-btn color="primary" class="mt-5" id="plan-event-btn">Plan Your Event</v-btn></router-link>
+                    <router-link to="/signup" class="plan-event-link"><v-btn color="primary" class="mt-5" id="plan-event-btn">Plan Your Event</v-btn></router-link>
                 </div>
             </div>
         </div>
@@ -31,7 +31,7 @@
         width: 100vw;
         height: 100vh;
         background: url('../assets/decoratedTable.jpg') no-repeat;
-        background-size: cover;
+        background-size: 100% 100%;
         background-position: 50% 0%;
         background-attachment: fixed;
     }
@@ -56,6 +56,11 @@
             text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
         }
     }
+    .plan-event-link {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
     #plan-event-btn {
         width: 90%;
         height: 50px;
@@ -69,5 +74,25 @@
     #benefit-1 {
         width: 90%;
         font-family: $font;
+    }
+
+    @media only screen and (min-width: 45rem) {
+        #hero {
+            width: 100vw;
+            height: 100vh;
+            background: url('../assets/fireThrowing.jpg') no-repeat;
+            background-size: cover;
+            background-position: 50% 0%;
+            background-attachment: fixed;
+        }  
+        .plan-event-link {
+            width: 90%;
+            justify-content: flex-start;
+        }
+        #plan-event-btn {
+            width: 300px;
+            height: 50px;
+            font-family: $font;
+        }
     }
 </style>
