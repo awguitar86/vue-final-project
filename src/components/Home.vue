@@ -31,7 +31,7 @@
         width: 100vw;
         height: 100vh;
         background: url('../assets/decoratedTable.jpg') no-repeat;
-        background-size: 100% 100%;
+        background-size: top left;
         background-position: 50% 0%;
         background-attachment: fixed;
     }
@@ -76,15 +76,23 @@
         font-family: $font;
     }
 
+    @media only screen and (min-width: 26rem) {
+        #hero {
+            background-size: cover;
+            background-position: 50% 0%;
+            background-attachment: fixed;
+        }
+    }
+
     @media only screen and (min-width: 45rem) {
         #hero {
             width: 100vw;
             height: 100vh;
-            background: url('../assets/fireThrowing.jpg') no-repeat;
+            background: url('../assets/peopleBySharks.jpg') no-repeat;
             background-size: cover;
             background-position: 50% 0%;
             background-attachment: fixed;
-        }  
+        }
         .plan-event-link {
             width: 90%;
             justify-content: flex-start;
