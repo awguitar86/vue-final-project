@@ -15,25 +15,25 @@
       </nav>
 
       <nav class="nav-lg">
-        <v-btn text><router-link to='/home'>Home</router-link></v-btn>
-        <v-btn text><router-link to='/about'>About</router-link></v-btn>
-        <v-btn text><router-link to='/contact'>Contact</router-link></v-btn>
-        <v-btn text v-if="!user"><router-link to='/login'>Login / Sign Up</router-link></v-btn>
-        <v-btn text v-if="user"><router-link to='/plan'>Plan Event</router-link></v-btn>
-        <v-btn text v-if="user"><router-link to='/account' v-if="user">Account</router-link></v-btn>
+        <router-link to='/home'><v-btn text>Home</v-btn></router-link>
+        <router-link to='/about'><v-btn text>About</v-btn></router-link>
+        <router-link to='/contact'><v-btn text>Contact</v-btn></router-link>
+        <router-link to='/login'><v-btn text v-if="!user">Login / Sign Up</v-btn></router-link>
+        <router-link to='/plan'><v-btn text v-if="user">Plan Event</v-btn></router-link>
+        <router-link to='/account' v-if="user"><v-btn text v-if="user">Account</v-btn></router-link>
         <v-btn text @click="logout" v-if="user">Logout</v-btn>
       </nav>
 
     </div>
 
     <transition name="slide" mode="out-in">
-        <v-container class="d-flex flex-column align-center" id="menu-wrap" v-if="isMenuOpen">
-            <v-btn height="60" text @click="isMenuOpen = false"><router-link style="text-decoration:none; color:black; font-size:16pt;" to='/home'>Home</router-link></v-btn>
-            <v-btn height="60" text @click="isMenuOpen = false"><router-link style="text-decoration:none; color:black; font-size:16pt;" to='/about'>About</router-link></v-btn>
-            <v-btn height="60" text @click="isMenuOpen = false"><router-link style="text-decoration:none; color:black; font-size:16pt;" to='/contact'>Contact</router-link></v-btn>
-            <v-btn height="60" text @click="isMenuOpen = false" v-if="!user"><router-link style="text-decoration:none; color:black; font-size:16pt;" to='/login'>Login / Sign Up</router-link></v-btn>
-            <v-btn height="60" text @click="isMenuOpen = false" v-if="user"><router-link style="text-decoration:none; color:black; font-size:16pt;" to='/plan'>Plan Event</router-link></v-btn>
-            <v-btn height="60" text @click="isMenuOpen = false" v-if="user"><router-link style="text-decoration:none; color:black; font-size:16pt;" to='/account' v-if="user">Account</router-link></v-btn>
+        <v-container id="menu-wrap" v-if="isMenuOpen">
+            <router-link class="menu-nav-link" to='/home'><v-btn style="text-decoration:none; color:black; font-size:16pt;" height="60" text @click="isMenuOpen = false">Home</v-btn></router-link>
+            <router-link class="menu-nav-link" to='/about'><v-btn style="text-decoration:none; color:black; font-size:16pt;" height="60" text @click="isMenuOpen = false">About</v-btn></router-link>
+            <router-link class="menu-nav-link" to='/contact'><v-btn style="text-decoration:none; color:black; font-size:16pt;" height="60" text @click="isMenuOpen = false">Contact</v-btn></router-link>
+            <router-link class="menu-nav-link" to='/login'><v-btn style="text-decoration:none; color:black; font-size:16pt;" height="60" text @click="isMenuOpen = false" v-if="!user">Login / Sign Up</v-btn></router-link>
+            <router-link class="menu-nav-link" to='/plan'><v-btn style="text-decoration:none; color:black; font-size:16pt;" height="60" text @click="isMenuOpen = false" v-if="user">Plan Event</v-btn></router-link>
+            <router-link class="menu-nav-link" to='/account' v-if="user"><v-btn style="text-decoration:none; color:black; font-size:16pt;" height="60" text @click="isMenuOpen = false" v-if="user">Account</v-btn></router-link>
             <v-btn height="60" text @click="logout" v-if="user" style="font-size:16pt;">Logout</v-btn>
         </v-container>
     </transition>
@@ -165,6 +165,9 @@
       display: none;
     }
     #menu-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       width: 100vw;
       height: 100vh;
       background: $light;
@@ -172,13 +175,18 @@
       top: 56px;
       position: absolute;
       z-index: 1000;
+      .menu-nav-link {
+        width: 100%;
+      }
       .v-btn {
         width: 100%;
         font-family: $font;
       }
     }
     .router-link-exact-active {
-      color: $second !important;
+      .v-btn {
+        color: $second !important;
+      }
     }
 
     #footer {
@@ -209,6 +217,9 @@
         color: $second;
       }
       .nav-sm {
+        display: none;
+      }
+      #menu-wrap {
         display: none;
       }
     }
