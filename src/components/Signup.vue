@@ -73,6 +73,9 @@
                         this.$router.replace('account');
                         this.$store.dispatch('setUser');
                         console.log(user);
+                        Firebase.auth().currentUser.sendEmailVerification()
+                            .then(() => console.log('Email Sent'))
+                            .catch(err => console.log(`Error: ${err}`))
                     },
                     err => {
                         alert(`Oops. ${err.message}`)

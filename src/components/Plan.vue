@@ -40,14 +40,14 @@
             <v-slider v-model="event.serpentineTableCount" min="0" max="20" ticks="always" tick-size="2" class="mt-0"></v-slider>
             <v-textarea v-model="event.specialRequests" label="Special Requests" type="text"></v-textarea>
 
-            <v-btn @click="addEvent" class="mt-6" id="event-btn" color="primary" depressed>Submit</v-btn> 
+            <v-btn @click="addEvent" class="mt-6" id="event-btn" color="primary" depressed>Submit</v-btn>
         </div>
 
         <div id="confirm-submit" v-if="isSubmitted">
             <v-icon size="100" color="green accent-4" class="mr-2">mdi-checkbox-marked-circle-outline</v-icon>
             <h1>Thank you for planning your event with us!</h1>
             <p>Your event reference number is 123456.</p>
-            <p>You will receive a confirmation email. We will contact you within 48 hours to confirm.</p>
+            <p>We will contact you within 48 hours to confirm.</p>
         </div>
 
     </v-container>

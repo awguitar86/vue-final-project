@@ -5,7 +5,7 @@
                 <div id="hero-text-wrap" class="d-flex flex-column justify-end align-center">
                     <h1 class="text-uppercase">The<br/>Living<br/>Planet Events!</h1>
                     <h2>You plan your event,<br/>We tak care of the rest.</h2>
-                    <router-link to="/signup" class="plan-event-link"><v-btn color="primary" class="mt-5" id="plan-event-btn">Plan Your Event</v-btn></router-link>
+                    <router-link :to="user ? '/plan' : '/signup'" class="plan-event-link"><v-btn color="primary" class="mt-5" id="plan-event-btn">Plan Your Event</v-btn></router-link>
                 </div>
             </div>
         </div>
@@ -20,7 +20,15 @@
 
 <script>
     export default {
-
+        computed: {
+            user() {
+                if(this.$store.getters.getUser) {
+                return true;
+                } else {
+                return false;
+                }
+            }
+        }
     }
 </script>
 
