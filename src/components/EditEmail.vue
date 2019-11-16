@@ -14,15 +14,16 @@
             type="email"
             required
         ></v-text-field>
-        <v-btn 
-            @click="editEmail" 
+        <v-btn
+            type="submit"
+            @click="editEmail"
             class="mt-4"
             width="90%"
             height="50px"
             id="submit-new-email-btn"
             color="primary"
             depressed
-        >Submit</v-btn> 
+        >Submit</v-btn>
         <v-alert type="error" dense v-if="error" class="mt-4">Error {{ error }}</v-alert>
     </div>
 </template>
@@ -69,4 +70,4 @@ export default {
     .v-input {
         width: 90%;
     }
-</style> 
+</style>

@@ -18,13 +18,14 @@
                 id="password-input"
                 required
             ></v-text-field>
-            <v-btn 
-                @click="login" 
+            <v-btn
+                type="submit"
+                @click="login"
                 class="mt-4"
                 id="login-btn"
                 color="primary"
                 depressed
-            >Login</v-btn> 
+            >Login</v-btn>
             <p id="forgot-password" class="mt-6"><router-link to='/forgot-password'>Forgot Password?</router-link></p>
             <p class="mt-2">You don't have an account? <router-link to='/signup'>Create one!</router-link></p>
             <br><br>
@@ -64,7 +65,8 @@
             })
         },
         methods: {
-            login() {
+            login(e) {
+                e.preventDefault();
                 Firebase.auth().signInWithEmailAndPassword(this.email, this.password)
                 .then(
                     user => {

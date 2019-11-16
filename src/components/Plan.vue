@@ -40,7 +40,7 @@
             <v-slider v-model="event.serpentineTableCount" min="0" max="20" ticks="always" tick-size="2" class="mt-0"></v-slider>
             <v-textarea v-model="event.specialRequests" label="Special Requests" type="text"></v-textarea>
 
-            <v-btn @click="addEvent" class="mt-6" id="event-btn" color="primary" depressed>Submit</v-btn>
+            <v-btn type="submit" @click="addEvent" class="mt-6" id="event-btn" color="primary" depressed>Submit</v-btn>
         </div>
 
         <div id="confirm-submit" v-if="isSubmitted">

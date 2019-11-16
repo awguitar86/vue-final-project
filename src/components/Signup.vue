@@ -30,6 +30,7 @@
                 required
             ></v-text-field>
             <v-btn
+                type="submit"
                 @click="signUp"
                 :disabled="confirmPassword !== password"
                 class="mt-4"
@@ -65,7 +66,8 @@
             }
         },
         methods: {
-            signUp() {
+            signUp(e) {
+                e.preventDefault();
                 Firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
                 .then(
                     user => {

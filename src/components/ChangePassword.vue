@@ -14,15 +14,16 @@
             type="password"
             required
         ></v-text-field>
-        <v-btn 
-            @click="changePassword" 
+        <v-btn
+            type="submit"
+            @click="changePassword"
             class="mt-4"
             width="90%"
             height="50px"
             id="password-btn"
             color="primary"
             depressed
-        >Submit</v-btn> 
+        >Submit</v-btn>
         <v-alert type="error" dense v-if="error" class="mt-4">Error {{ error }}</v-alert>
     </div>
 </template>
@@ -55,7 +56,7 @@ export default {
             }).catch( err => {
                 this.error = err;
                 throw err;
-                
+
             });
         }
     },

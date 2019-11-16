@@ -12,13 +12,14 @@
                     id="email-input"
                     required
                 ></v-text-field>
-                <v-btn 
-                    @click="passwordReset" 
+                <v-btn
+                    type="submit"
+                    @click="passwordReset"
                     class="mt-4"
                     id="pass-reset-btn"
                     color="primary"
                     depressed
-                >Submit</v-btn> 
+                >Submit</v-btn>
                 <p class="mt-6"><router-link to='/login'>Back to Login</router-link></p>
                 <br><br>
                 <v-alert type="error" v-if="alert">{{ alertText }}</v-alert>
@@ -50,7 +51,8 @@
             }
         },
         methods: {
-            passwordReset() {
+            passwordReset(e) {
+                e.preventDefault();
                 Firebase.auth().sendPasswordResetEmail(this.email)
                 .then(() => {
                     this.isForgotPassFormSubmitted = true;
@@ -67,7 +69,7 @@
 </script>
 
 <style scoped lang="scss">
-    #forgot-password-wrap {        
+    #forgot-password-wrap {
         p {
             width: 90%;
         }
