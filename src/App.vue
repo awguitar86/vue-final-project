@@ -1,28 +1,30 @@
 <template>
   <v-app class="d-flex flex-colunm align-center">
     <div id="header" style="z-index:1020;">
-      <router-link to="/home" class="d-flex align-center justify-center">
-        <img src='./assets/ICKnifeLogo.svg' alt="logo" id="icon-logo"/>
-      </router-link>
-      <v-spacer></v-spacer>
-      <nav class="nav-sm">
-        <v-btn id="ham-menu" v-if="!isMenuOpen" icon @click="menuToggle">
-            <v-icon size="28" color="blue-grey darken-3">mdi-menu</v-icon>
-        </v-btn>
-        <v-btn id="ham-menu" v-if="isMenuOpen" icon @click="menuToggle">
-            <v-icon size="28" color="blue-grey darken-3">mdi-close</v-icon>
-        </v-btn>
-      </nav>
+      <div id="header-wrap">
+        <router-link to="/home" class="d-flex align-center justify-center">
+          <img src='./assets/ICKnifeLogo.svg' alt="logo" id="icon-logo"/>
+        </router-link>
+        <v-spacer></v-spacer>
+        <nav class="nav-sm">
+          <v-btn id="ham-menu" v-if="!isMenuOpen" icon @click="menuToggle">
+              <v-icon size="28" color="blue-grey darken-3">mdi-menu</v-icon>
+          </v-btn>
+          <v-btn id="ham-menu" v-if="isMenuOpen" icon @click="menuToggle">
+              <v-icon size="28" color="blue-grey darken-3">mdi-close</v-icon>
+          </v-btn>
+        </nav>
 
-      <nav class="nav-lg">
-        <router-link to='/home'><v-btn text>Home</v-btn></router-link>
-        <router-link to='/about'><v-btn text>About</v-btn></router-link>
-        <router-link to='/contact'><v-btn text>Contact</v-btn></router-link>
-        <router-link to='/login'><v-btn text v-if="!user">Login / Sign Up</v-btn></router-link>
-        <router-link to='/plan'><v-btn text v-if="user">Plan Event</v-btn></router-link>
-        <router-link to='/account' v-if="user"><v-btn text v-if="user">Account</v-btn></router-link>
-        <v-btn text @click="logout" v-if="user">Logout</v-btn>
-      </nav>
+        <nav class="nav-lg">
+          <router-link to='/home'><v-btn text>Home</v-btn></router-link>
+          <router-link to='/about'><v-btn text>About</v-btn></router-link>
+          <router-link to='/contact'><v-btn text>Contact</v-btn></router-link>
+          <router-link to='/login'><v-btn text v-if="!user">Login / Sign Up</v-btn></router-link>
+          <router-link to='/plan'><v-btn text v-if="user">Plan Event</v-btn></router-link>
+          <router-link to='/account' v-if="user"><v-btn text v-if="user">Account</v-btn></router-link>
+          <v-btn text @click="logout" v-if="user">Logout</v-btn>
+        </nav>
+      </div>
 
     </div>
 
@@ -116,10 +118,16 @@
       height: 56px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      padding: 0px 20px 0px 20px;
+      justify-content: center;
       box-shadow: 0 0px 20px rgba(0, 0, 0, 0.4);
       background: $light;
+    }
+    #header-wrap {
+      width: 95%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
     #icon-logo {
       width: 80px;
@@ -226,6 +234,8 @@
 
     // For large screens
     @media only screen and (min-width: 75rem) {
-
+      #header-wrap {
+        width: 75rem;
+      }
     }
 </style>

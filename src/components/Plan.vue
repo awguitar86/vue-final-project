@@ -152,13 +152,13 @@
 
 
     @media only screen and (min-width: 48rem) {
-        #event-form {
-            width: 40%;
-        }
+
     }
 
     // For large screens
     @media only screen and (min-width: 75rem) {
-
+        #event-form {
+            width: 50%;
+        }
     }
 </style>

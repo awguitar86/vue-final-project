@@ -104,9 +104,9 @@
 
     }
 
-    @media only screen and (min-width : 48rem) {
+    @media only screen and (min-width: 27rem) {
         #login-form {
-            width: 40%;
+            width: 27rem;
         }
     }
 </style>

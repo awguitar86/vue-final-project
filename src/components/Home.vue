@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="d-flex flex-column align-center">
         <div id="hero">
             <div id="hero-overlay" class="d-flex flex-column justify-center align-center">
                 <div id="hero-text-wrap" class="d-flex flex-column justify-end align-center">
@@ -90,6 +90,15 @@
             background-position: 50% 0%;
             background-attachment: fixed;
         }
+        .plan-event-link {
+            width: 90%;
+            justify-content: flex-start;
+        }
+        #plan-event-btn {
+            width: 400px;
+            height: 50px;
+            font-family: $font;
+        }
     }
 
     @media only screen and (min-width: 45rem) {
@@ -101,14 +110,23 @@
             background-position: 50% 0%;
             background-attachment: fixed;
         }
-        .plan-event-link {
-            width: 90%;
-            justify-content: flex-start;
+    }
+
+    @media only screen and (min-width: 75rem) {
+        #hero-text-wrap {
+            width: 75rem;
+            h1, h2 {
+                width: 100%;
+            }
+            .plan-event-link {
+                width: 100%;
+            }
         }
-        #plan-event-btn {
-            width: 300px;
-            height: 50px;
-            font-family: $font;
+        #home-body {
+            width: 75rem;
+        }
+        #benefit-1 {
+            width: 100%;
         }
     }
 </style>

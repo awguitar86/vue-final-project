@@ -70,4 +70,10 @@ export default {
     .v-input {
         width: 90%;
     }
+
+    @media only screen and (min-width: 48rem) {
+        #change-email-form {
+            width: 45rem;
+        }
+    } 
 </style>

@@ -43,11 +43,11 @@
         <p v-else>No events scheduled</p>
 
         <div v-if="isEmailModalOpen" id="emailModal" class="d-flex flex-column align-center justify-start">
-            <div class="modal-wrap d-flex flex-column align-center" v-if="!editEmailComplete">
-                <p class="close-modal mt-2" @click="isEmailModalOpen = !isEmailModalOpen"><v-icon size="28" color="blue-grey darken-3">mdi-close</v-icon></p>
+            <div class="edit-account-modal-wrap modal-wrap d-flex flex-column align-center" v-if="!editEmailComplete">
+                <p class="close-modal mt-5" @click="isEmailModalOpen = !isEmailModalOpen"><v-icon size="28" color="blue-grey darken-3">mdi-close</v-icon></p>
                 <EditEmail @updateEmailComplete="updateEmailModal($event)"></EditEmail>
             </div>
-            <div class="modal-complete-wrap d-flex flex-column align-center pt-3 pb-12" v-else>
+            <div class="edit-account-modal-wrap modal-complete-wrap d-flex flex-column align-center pt-3 pb-12" v-else>
                 <p class="close-modal" @click="isEmailModalOpen = !isEmailModalOpen"><v-icon size="28" color="blue-grey darken-3">mdi-close</v-icon></p>
                 <v-icon size="60" color="green accent-4" class="mt-5 mb-5">mdi-checkbox-marked-circle-outline</v-icon>
                 <h3 class="text-uppercase">Your email has been changed!</h3>
@@ -55,11 +55,11 @@
         </div>
 
         <div v-if="isPasswordModalOpen" id="passwordModal" class="d-flex flex-column align-center justify-start">
-            <div class="modal-wrap d-flex flex-column align-center" v-if="!isChangePasswordComplete">
+            <div class="edit-account-modal-wrap modal-wrap d-flex flex-column align-center" v-if="!isChangePasswordComplete">
                 <p class="close-modal mt-2" @click="isPasswordModalOpen = !isPasswordModalOpen"><v-icon size="28" color="blue-grey darken-3">mdi-close</v-icon></p>
                 <ChangePassword @updatePasswordComplete="updatePassword($event)"></ChangePassword>
             </div>
-            <div class="modal-complete-wrap d-flex flex-column align-center pt-3 pb-12" v-else>
+            <div class="edit-account-modal-wrap modal-complete-wrap d-flex flex-column align-center pt-3 pb-12" v-else>
                 <p class="close-modal" @click="isPasswordModalOpen = !isPasswordModalOpen"><v-icon size="28" color="blue-grey darken-3">mdi-close</v-icon></p>
                 <v-icon size="60" color="green accent-4" class="mt-5 mb-5">mdi-checkbox-marked-circle-outline</v-icon>
                 <h3 class="text-uppercase">Your password has been changed!</h3>
@@ -195,4 +195,10 @@
             text-align: center;
         }
     }
+
+    @media only screen and (min-width: 48rem) {
+        .edit-account-modal-wrap {
+            width: 45rem;
+        }
+    } 
 </style>

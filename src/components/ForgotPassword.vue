@@ -103,9 +103,9 @@
         }
     }
 
-    @media only screen and (min-width: 48rem) {
-        #pass-reset-form {
-            width: 40%;
+    @media only screen and (min-width: 27rem) {
+        #forgot-password-wrap {
+            width: 27rem;
         }
     }
 
