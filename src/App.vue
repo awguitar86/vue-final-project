@@ -214,11 +214,9 @@
         display: initial;
       }
       .nav-lg {
-        button {
-          a {
-            text-decoration: none;
-            color: black;
-          }
+        a {
+          text-decoration: none;
+          color: black;
         }
       }
       .router-link-active, .router-link-exact-active {
