@@ -4,16 +4,23 @@
             <div id="hero-overlay" class="d-flex flex-column justify-center align-center">
                 <div id="hero-text-wrap" class="d-flex flex-column justify-end align-center">
                     <h1 class="text-uppercase">The<br/>Living<br/>Planet Events!</h1>
-                    <h2>You plan your event,<br/>We tak care of the rest.</h2>
+                    <h2>You plan your event,<br/>We take care of the rest.</h2>
                     <router-link :to="user ? '/plan' : '/signup'" class="plan-event-link"><v-btn color="primary" class="mt-5" id="plan-event-btn">Plan Your Event</v-btn></router-link>
                 </div>
             </div>
         </div>
         <div id="home-body" class="d-flex flex-column align-center">
-            <div class="d-flex align-start mt-5" id="benefit-1">
-                <v-icon size="28" color="green accent-4" class="mr-2">mdi-checkbox-marked-circle-outline</v-icon>
-                <p><strong>Lots of Space</strong> to hold any amount of people coming to your event.</p>
-            </div>
+            <section id="home-section-1">
+                <h2 class="text-uppercase">The perfect place for your events!</h2>
+                <div class="d-flex align-start mt-5" id="benefit-1">
+                    <v-icon size="28" color="green accent-4" class="mr-2">mdi-checkbox-marked-circle-outline</v-icon>
+                    <p><strong>Lots of Space </strong>- We can hold any amount of people coming to your event.</p>
+                </div>
+                <div class="d-flex align-start mt-10" id="benefit-1">
+                    <v-icon size="28" color="green accent-4" class="mr-2">mdi-checkbox-marked-circle-outline</v-icon>
+                    <p><strong>Setup and Cleanup all taken care of </strong>- You don't have to worry about setup or cleanup at all.</p>
+                </div>
+            </section>
         </div>
     </div>
 </template>
@@ -79,9 +86,21 @@
         height: 800px;
         background: white;
     }
-    #benefit-1 {
-        width: 90%;
-        font-family: $font;
+    #home-section-1 {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        h2 {
+            width: 90%;
+            font-family: $font;
+            text-align: center;
+            margin-top: 40px;
+        }
+        #benefit-1 {
+            width: 90%;
+            font-family: $font;
+        }
     }
 
     @media only screen and (min-width: 26rem) {
