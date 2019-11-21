@@ -20,6 +20,10 @@
                     <v-icon size="28" color="green accent-4" class="mr-2">mdi-checkbox-marked-circle-outline</v-icon>
                     <p><strong>Setup and Cleanup all taken care of </strong>- You don't have to worry about setup or cleanup at all.</p>
                 </div>
+                <div class="d-flex align-start mt-10" id="benefit-1">
+                    <v-icon size="28" color="green accent-4" class="mr-2">mdi-checkbox-marked-circle-outline</v-icon>
+                    <p><strong>Stress Free </strong>- You plan it and we'll take care of the rest so you don't have to stress.</p>
+                </div>
             </section>
         </div>
     </div>
