@@ -1,5 +1,5 @@
 <template>
-    <v-container class="d-flex flex-column align-center pt-0">
+    <v-container class="d-flex flex-column align-center pt-0" id="account-wrap">
 
         <h2 class="text-uppercase mt-5" id="account-header">Account</h2>
         <p class="account-info mt-4">{{ this.userName }}</p>
@@ -11,31 +11,31 @@
 
         <h3 class="text-uppercase mt-4 mb-3 events-header">Events</h3>
         <v-expansion-panels v-if="hasEvent">
-            <v-expansion-panel>
-                <v-expansion-panel-header>{{ userEventPlan.company }} Event</v-expansion-panel-header>
+            <v-expansion-panel v-for="event in userEventPlan" :key="event.eventDate" class="mb-4">
+                <v-expansion-panel-header>{{ event.company }} - {{ event.eventDate }}</v-expansion-panel-header>
                 <v-expansion-panel-content>
                     <v-list width="100%">
-                        <EventItem name="Company" :value="userEventPlan.company"></EventItem>
-                        <EventItem name="Company Rep" :value="userEventPlan.companyRepName"></EventItem>
-                        <EventItem name="Event Date" :value="userEventPlan.eventDate"></EventItem>
-                        <EventItem name="Event Start Time" :value="userEventPlan.startTime"></EventItem>
-                        <EventItem name="Event End Time" :value="userEventPlan.endTime"></EventItem>
-                        <EventItem name="Number of People" :value="userEventPlan.peopleCount"></EventItem>
-                        <EventItem name="Number of Courses" :value="userEventPlan.foodCourseCount"></EventItem>
-                        <EventItem name="Main Course" :value="userEventPlan.mainFoodCourse"></EventItem>
-                        <EventItem name="Beverages" :value="userEventPlan.beverages"></EventItem>
-                        <EventItem name="Food Allergies" :value="userEventPlan.allergies"></EventItem>
-                        <EventItem name="Food Lifestyles" :value="userEventPlan.foodLifestyles"></EventItem>
-                        <EventItem name="Plated or Buffet" :value="userEventPlan.platedOrBuffet"></EventItem>
-                        <EventItem name="Use Glassware" :value="userEventPlan.useGlassware ? 'Yes' : 'No'"></EventItem>
-                        <EventItem name="Use Silverware" :value="userEventPlan.useSilverware ? 'Yes' : 'No'"></EventItem>
-                        <EventItem name="Need Whole Aquarium" :value="userEventPlan.needsWholeAquarium ? 'Yes' : 'No'"></EventItem>
-                        <EventItem name="Need Coat Check" :value="userEventPlan.needsCoatCheck ? 'Yes' : 'No'"></EventItem>
-                        <EventItem name="Number of Round Tables" :value="userEventPlan.roundTableCount"></EventItem>
-                        <EventItem name="Number of Long Tables" :value="userEventPlan.longTableCount"></EventItem>
-                        <EventItem name="Number of Tall Tables" :value="userEventPlan.tallTableCount"></EventItem>
-                        <EventItem name="Number of Serpentine Tables" :value="userEventPlan.serpentineTableCount"></EventItem>
-                        <EventItem name="Special Requests" :value="userEventPlan.specialRequests"></EventItem>
+                        <EventItem name="Company" :value="event.company"></EventItem>
+                        <EventItem name="Company Rep" :value="event.companyRepName"></EventItem>
+                        <EventItem name="Event Date" :value="event.eventDate"></EventItem>
+                        <EventItem name="Event Start Time" :value="event.startTime"></EventItem>
+                        <EventItem name="Event End Time" :value="event.endTime"></EventItem>
+                        <EventItem name="Number of People" :value="event.peopleCount"></EventItem>
+                        <EventItem name="Number of Courses" :value="event.foodCourseCount"></EventItem>
+                        <EventItem name="Main Course" :value="event.mainFoodCourse"></EventItem>
+                        <EventItem name="Beverages" :value="event.beverages"></EventItem>
+                        <EventItem name="Food Allergies" :value="event.allergies"></EventItem>
+                        <EventItem name="Food Lifestyles" :value="event.foodLifestyles"></EventItem>
+                        <EventItem name="Plated or Buffet" :value="event.platedOrBuffet"></EventItem>
+                        <EventItem name="Use Glassware" :value="event.useGlassware ? 'Yes' : 'No'"></EventItem>
+                        <EventItem name="Use Silverware" :value="event.useSilverware ? 'Yes' : 'No'"></EventItem>
+                        <EventItem name="Need Whole Aquarium" :value="event.needsWholeAquarium ? 'Yes' : 'No'"></EventItem>
+                        <EventItem name="Need Coat Check" :value="event.needsCoatCheck ? 'Yes' : 'No'"></EventItem>
+                        <EventItem name="Number of Round Tables" :value="event.roundTableCount"></EventItem>
+                        <EventItem name="Number of Long Tables" :value="event.longTableCount"></EventItem>
+                        <EventItem name="Number of Tall Tables" :value="event.tallTableCount"></EventItem>
+                        <EventItem name="Number of Serpentine Tables" :value="event.serpentineTableCount"></EventItem>
+                        <EventItem name="Special Requests" :value="event.specialRequests"></EventItem>
                     </v-list>
                 </v-expansion-panel-content>
             </v-expansion-panel>
@@ -107,12 +107,13 @@
         },
         created(){
             let uid = this.$store.getters.getUser.uid;
-            this.$http.get(`${uid}.json`)
+            this.$http.get(`plans/${uid}.json`)
             .then( res => {
                 if(res.body){
                     this.$store.dispatch('setEventPlan', res.body);
                     this.userEventPlan = res.body;
                     this.hasEvent = true;
+                    console.log(res.body);
                 } else {
                     this.hasEvent = false;
                 }
@@ -199,6 +200,12 @@
     @media only screen and (min-width: 48rem) {
         .edit-account-modal-wrap {
             width: 45rem;
+        }
+    } 
+
+    @media only screen and (min-width: 75rem) {
+        #account-wrap {
+            width: 75rem;
         }
     } 
 </style>

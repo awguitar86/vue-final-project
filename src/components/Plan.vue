@@ -46,8 +46,9 @@
         <div id="confirm-submit" v-if="isSubmitted">
             <v-icon size="100" color="green accent-4" class="mr-2">mdi-checkbox-marked-circle-outline</v-icon>
             <h1>Thank you for planning your event with us!</h1>
-            <p>Your event reference number is 123456.</p>
+            <p>Your event reference number is {{eventId}}.</p>
             <p>We will contact you within 48 hours to confirm.</p>
+            <router-link to='/account'><v-btn depressed color="primary" @click="isSubmitted = false">Back to Account</v-btn></router-link>
         </div>
 
     </v-container>
@@ -87,6 +88,7 @@
                     useSilverware: false,
                 },
                 resource: {},
+                eventId: Math.floor((Math.random() * 1000000) + 1)
             }
         },
         methods: {
@@ -101,7 +103,7 @@
         },
         created() {
             const customActions = {
-                saveEvent: {method: 'POST', url: `${this.userId}.json`}
+                saveEvent: {method: 'POST', url: `plans/${this.userId}/${this.eventId}.json`}
             }
             this.resource = this.$resource('data.json', {}, customActions)
         }
@@ -144,9 +146,11 @@
             margin-top: 10px;
             margin-bottom: 20px;
             width: 100%;
+            text-align: center;
         }
         p {
             width: 100%;
+            text-align: center;
         }
     }
 
