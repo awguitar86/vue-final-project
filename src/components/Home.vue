@@ -12,18 +12,21 @@
         <div id="home-body" class="d-flex flex-column align-center">
             <section id="home-section-1">
                 <h2 class="text-uppercase">The perfect place for your events!</h2>
-                <div class="d-flex align-start mt-5" id="benefit-1">
-                    <v-icon size="28" color="green accent-4" class="mr-2">mdi-checkbox-marked-circle-outline</v-icon>
-                    <p><strong>Lots of Space </strong>- We can hold any amount of people coming to your event.</p>
+                <div id="sec-1-text">
+                    <div class="benefit d-flex align-start mt-5">
+                        <v-icon size="28" color="green accent-4" class="mr-2">mdi-checkbox-marked-circle-outline</v-icon>
+                        <p><strong>Lots of Space </strong>- We can hold any amount of people coming to your event.</p>
+                    </div>
+                    <div class="benefit d-flex align-start mt-10">
+                        <v-icon size="28" color="green accent-4" class="mr-2">mdi-checkbox-marked-circle-outline</v-icon>
+                        <p><strong>Setup and Cleanup all taken care of </strong>- You don't have to worry about setup or cleanup at all.</p>
+                    </div>
+                    <div class="benefit d-flex align-start mt-10">
+                        <v-icon size="28" color="green accent-4" class="mr-2">mdi-checkbox-marked-circle-outline</v-icon>
+                        <p><strong>Stress Free </strong>- You plan it and we'll take care of the rest so you don't have to stress.</p>
+                    </div>
                 </div>
-                <div class="d-flex align-start mt-10" id="benefit-1">
-                    <v-icon size="28" color="green accent-4" class="mr-2">mdi-checkbox-marked-circle-outline</v-icon>
-                    <p><strong>Setup and Cleanup all taken care of </strong>- You don't have to worry about setup or cleanup at all.</p>
-                </div>
-                <div class="d-flex align-start mt-10" id="benefit-1">
-                    <v-icon size="28" color="green accent-4" class="mr-2">mdi-checkbox-marked-circle-outline</v-icon>
-                    <p><strong>Stress Free </strong>- You plan it and we'll take care of the rest so you don't have to stress.</p>
-                </div>
+                <img src="../assets/fireThrowing.jpg" alt="Man Throwing Fire" id="fire-throwing-pic"/>
             </section>
         </div>
     </div>
@@ -101,9 +104,19 @@
             text-align: center;
             margin-top: 40px;
         }
-        #benefit-1 {
+        #sec-1-text {
+            width: 90%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .benefit {
             width: 90%;
             font-family: $font;
+        }
+        #fire-throwing-pic {
+            width: 100%;
+            height: auto;
         }
     }
 

@@ -45,6 +45,8 @@ Vue.http.interceptors.push((req, next) => {
   });
 });
 
+// Vue.directive('')
+
 new Vue({
   vuetify,
   router,
