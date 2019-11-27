@@ -15,27 +15,27 @@
                 <v-expansion-panel-header>{{ event.company }} - {{ event.eventDate }}</v-expansion-panel-header>
                 <v-expansion-panel-content>
                     <v-list width="100%">
-                        <EventItem name="Company" :value="event.company"></EventItem>
+                        <EventItem name="Company" :value="event.company" v-bg-grey></EventItem>
                         <EventItem name="Company Rep" :value="event.companyRepName"></EventItem>
-                        <EventItem name="Event Date" :value="event.eventDate"></EventItem>
+                        <EventItem name="Event Date" :value="event.eventDate" v-bg-grey></EventItem>
                         <EventItem name="Event Start Time" :value="event.startTime"></EventItem>
-                        <EventItem name="Event End Time" :value="event.endTime"></EventItem>
+                        <EventItem name="Event End Time" :value="event.endTime" v-bg-grey></EventItem>
                         <EventItem name="Number of People" :value="event.peopleCount"></EventItem>
-                        <EventItem name="Number of Courses" :value="event.foodCourseCount"></EventItem>
+                        <EventItem name="Number of Courses" :value="event.foodCourseCount" v-bg-grey></EventItem>
                         <EventItem name="Main Course" :value="event.mainFoodCourse"></EventItem>
-                        <EventItem name="Beverages" :value="event.beverages"></EventItem>
+                        <EventItem name="Beverages" :value="event.beverages" v-bg-grey></EventItem>
                         <EventItem name="Food Allergies" :value="event.allergies"></EventItem>
-                        <EventItem name="Food Lifestyles" :value="event.foodLifestyles"></EventItem>
+                        <EventItem name="Food Lifestyles" :value="event.foodLifestyles" v-bg-grey></EventItem>
                         <EventItem name="Plated or Buffet" :value="event.platedOrBuffet"></EventItem>
-                        <EventItem name="Use Glassware" :value="event.useGlassware ? 'Yes' : 'No'"></EventItem>
+                        <EventItem name="Use Glassware" :value="event.useGlassware ? 'Yes' : 'No'" v-bg-grey></EventItem>
                         <EventItem name="Use Silverware" :value="event.useSilverware ? 'Yes' : 'No'"></EventItem>
-                        <EventItem name="Need Whole Aquarium" :value="event.needsWholeAquarium ? 'Yes' : 'No'"></EventItem>
+                        <EventItem name="Need Whole Aquarium" :value="event.needsWholeAquarium ? 'Yes' : 'No'" v-bg-grey></EventItem>
                         <EventItem name="Need Coat Check" :value="event.needsCoatCheck ? 'Yes' : 'No'"></EventItem>
-                        <EventItem name="Number of Round Tables" :value="event.roundTableCount"></EventItem>
+                        <EventItem name="Number of Round Tables" :value="event.roundTableCount" v-bg-grey></EventItem>
                         <EventItem name="Number of Long Tables" :value="event.longTableCount"></EventItem>
-                        <EventItem name="Number of Tall Tables" :value="event.tallTableCount"></EventItem>
+                        <EventItem name="Number of Tall Tables" :value="event.tallTableCount" v-bg-grey></EventItem>
                         <EventItem name="Number of Serpentine Tables" :value="event.serpentineTableCount"></EventItem>
-                        <EventItem name="Special Requests" :value="event.specialRequests"></EventItem>
+                        <EventItem name="Special Requests" :value="event.specialRequests" v-bg-grey></EventItem>
                     </v-list>
                 </v-expansion-panel-content>
             </v-expansion-panel>
@@ -126,6 +126,13 @@
             EventItem,
             EditEmail,
             ChangePassword
+        },
+        directives: {
+            'bg-grey': {
+                bind(el, binding, vnode) {
+                    el.style.backgroundColor = "#E8E8E8";
+                }
+            }
         }
     }
 </script>
