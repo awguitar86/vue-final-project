@@ -130,7 +130,7 @@
       justify-content: space-between;
     }
     #living-planet-logo {
-      width: 310px;
+      width: 250px;
       height: auto;
     }
     .slide-enter-active {
@@ -211,6 +211,16 @@
 
     // For medium screens
     @media only screen and (min-width: 48rem) {
+      #living-planet-logo {
+        width: 310px;
+      }
+    }
+
+    // For large screens
+    @media only screen and (min-width: 75rem) {
+      #header-wrap {
+        width: 75rem;
+      }
       .nav-lg {
         display: initial;
       }
@@ -231,13 +241,6 @@
         .menu-nav-link-lg {
           text-decoration: none;
         }
-      }
-    }
-
-    // For large screens
-    @media only screen and (min-width: 75rem) {
-      #header-wrap {
-        width: 75rem;
       }
     }
 </style>

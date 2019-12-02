@@ -3,11 +3,11 @@
 
         <h2 class="text-uppercase mt-5" id="account-header">Account</h2>
         <p class="account-info mt-4">{{ this.userName }}</p>
-        <p class="account-info">{{ this.userEmail }}</p>   
+        <p class="account-info">{{ this.userEmail }}</p>
         <div id="edit-account-btns" class="d-flex align-center mt-5">
             <p class="mr-5" @click="isEmailModalOpen = !isEmailModalOpen">Edit Email</p>
             <p @click="isPasswordModalOpen = !isPasswordModalOpen">Change Password</p>
-        </div>   
+        </div>
 
         <h3 class="text-uppercase mt-4 mb-3 events-header">Events</h3>
         <v-expansion-panels v-if="hasEvent">
@@ -127,13 +127,13 @@
             EditEmail,
             ChangePassword
         },
-        // directives: {
-        //     'bg-grey': {
-        //         bind(el, binding, vnode) {
-        //             el.style.backgroundColor = "#E8E8E8";
-        //         }
-        //     }
-        // }
+        directives: {
+            'bg-grey': {
+                bind(el) {
+                    el.style.backgroundColor = "#E8E8E8";
+                }
+            }
+        }
     }
 </script>
 <style lang="scss" scoped>
@@ -208,11 +208,11 @@
         .edit-account-modal-wrap {
             width: 45rem;
         }
-    } 
+    }
 
     @media only screen and (min-width: 75rem) {
         #account-wrap {
             width: 75rem;
         }
-    } 
+    }
 </style>
