@@ -3,7 +3,7 @@
     <div id="header" style="z-index:1020;">
       <div id="header-wrap">
         <router-link to="/home" class="d-flex align-center justify-center">
-          <img src='./assets/ICKnifeLogo.svg' alt="logo" id="icon-logo"/>
+          <img src='./assets/LivingPlanetLogo.svg' alt="logo" id="living-planet-logo"/>
         </router-link>
         <v-spacer></v-spacer>
         <nav class="nav-sm">
@@ -129,8 +129,8 @@
       align-items: center;
       justify-content: space-between;
     }
-    #icon-logo {
-      width: 80px;
+    #living-planet-logo {
+      width: 310px;
       height: auto;
     }
     .slide-enter-active {

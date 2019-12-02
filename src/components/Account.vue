@@ -127,13 +127,13 @@
             EditEmail,
             ChangePassword
         },
-        directives: {
-            'bg-grey': {
-                bind(el, binding, vnode) {
-                    el.style.backgroundColor = "#E8E8E8";
-                }
-            }
-        }
+        // directives: {
+        //     'bg-grey': {
+        //         bind(el, binding, vnode) {
+        //             el.style.backgroundColor = "#E8E8E8";
+        //         }
+        //     }
+        // }
     }
 </script>
 <style lang="scss" scoped>
