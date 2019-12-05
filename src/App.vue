@@ -48,7 +48,7 @@
     <v-snackbar v-model="snackbar" color="success" right>{{ snackbarText }}</v-snackbar>
 
     <div id="footer" class="d-flex align-center justify-center">
-      <p>© 2019 Icon Culinary</p>
+      <p>© 2019 The Living Planet Events</p>
     </div>
   </v-app>
 </template>

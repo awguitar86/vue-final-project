@@ -10,23 +10,25 @@
             </div>
         </div>
         <div id="home-body" class="d-flex flex-column align-center">
-            <section id="home-section-1">
+            <section id="home-section">
                 <h2 class="text-uppercase">The perfect place for your events!</h2>
-                <div id="sec-1-text">
-                    <div class="benefit d-flex align-start mt-5">
-                        <v-icon size="28" color="green accent-4" class="mr-2">mdi-checkbox-marked-circle-outline</v-icon>
-                        <p><strong>Lots of Space </strong>- We can hold any amount of people coming to your event.</p>
-                    </div>
-                    <div class="benefit d-flex align-start mt-10">
-                        <v-icon size="28" color="green accent-4" class="mr-2">mdi-checkbox-marked-circle-outline</v-icon>
-                        <p><strong>Setup and Cleanup all taken care of </strong>- You don't have to worry about setup or cleanup at all.</p>
-                    </div>
-                    <div class="benefit d-flex align-start mt-10">
-                        <v-icon size="28" color="green accent-4" class="mr-2">mdi-checkbox-marked-circle-outline</v-icon>
-                        <p><strong>Stress Free </strong>- You plan it and we'll take care of the rest so you don't have to stress.</p>
-                    </div>
+                <p class="home-text">
+                    The Loveland Living Planet Aquarium is the perfect place for your event. We have lots of space to hold as many people as you need, 
+                    and a fantastic staff that always strives to make your experience the best experience possible. Our chefs come with a combined
+                    40 years experience and they make the food that will keep you coming back for seconds.
+                    <br/>
+                    <br/>
+                    Our website is the perfect place for you to schedule your event hassle free. Signup with an account and fill out the event plan form
+                    with the details that will help us to better prepare for your special event. We promise that you will absolutley love having your event here.
+                </p>
+                <div id="home-pics-wrap">
+                    <img src="../assets/acrobaticsGirl.jpg" alt="Acrobatics Girl" class="home-pictures" id="acrobatics-pic"/>
+                    <img src="../assets/throwingFire.jpg" alt="Man Throwing Fire" class="home-pictures" id="fire-throwing-pic"/>
+                    <img src="../assets/foodBySharks.jpg" alt="Food by Shark Tank" class="home-pictures" id="food-by-sharks-pic"/>
+                    <img src="../assets/fruit.jpg" alt="Fruit" class="home-pictures" id="fruit-pic"/>
+                    <img src="../assets/miniPies.jpg" alt="Mini Pies" class="home-pictures" id="mini-pies-pic"/>
+                    <img src="../assets/skewers.jpg" alt="Skewers" class="home-pictures" id="skewers-pic"/>
                 </div>
-                <img src="../assets/fireThrowing.jpg" alt="Man Throwing Fire" id="fire-throwing-pic"/>
             </section>
         </div>
     </div>
@@ -90,10 +92,9 @@
     }
     #home-body {
         width: 100vw;
-        height: 800px;
         background: white;
     }
-    #home-section-1 {
+    #home-section {
         width: 100%;
         display: flex;
         flex-direction: column;
@@ -103,20 +104,48 @@
             font-family: $font;
             text-align: center;
             margin-top: 40px;
+            margin-bottom: 20px;
         }
-        #sec-1-text {
-            width: 90%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        .home-text {
+            width: 95%;
+            margin-bottom: 20px;
         }
-        .benefit {
-            width: 90%;
-            font-family: $font;
+    }
+    #home-pics-wrap {
+        width: 100%;
+        margin-bottom: 20px;
+        display: grid;
+        gap: 20px;
+        justify-items: center;
+        grid-template-areas: 
+            "acrobatics"
+            "fire"
+            "food-sharks"
+            "fruit"
+            "pies"
+            "skewers"   
+        ;
+        .home-pictures {
+            width: 95%;
+            height: auto;
+        }
+        #acrobatics-pic {
+            grid-area: acrobatics;
         }
         #fire-throwing-pic {
-            width: 100%;
-            height: auto;
+            grid-area: fire;
+        }
+        #food-by-sharks-pic {
+            grid-area: food-sharks;
+        }
+        #fruit-pic {
+            grid-area: fruit;
+        }
+        #mini-pies-pic {
+            grid-area: pies;
+        }
+        #skewers-pic {
+            grid-area: skewers;
         }
     }
 
@@ -146,6 +175,18 @@
             background-position: 50% 0%;
             background-attachment: fixed;
         }
+        #home-pics-wrap {
+            width: 95%;
+            grid-template-areas: 
+                "acrobatics fire"
+                "food-sharks fruit"
+                "pies skewers"   
+            ;
+            .home-pictures {
+                width: 100%;
+                height: auto;
+            }
+        }
     }
 
     @media only screen and (min-width: 75rem) {
@@ -161,8 +202,12 @@
         #home-body {
             width: 75rem;
         }
-        #benefit-1 {
-            width: 100%;
+        #home-pics-wrap {
+            width: 75rem;
+            grid-template-areas: 
+                "acrobatics fire food-sharks"
+                "fruit pies skewers"   
+            ;
         }
     }
 </style>
