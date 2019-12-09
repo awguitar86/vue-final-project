@@ -1,16 +1,28 @@
 <template>
-    <v-container class="d-flex flex-column align-center mt-5">
+    <v-container id="plan-wrapper" class="mt-5">
 
         <div id="event-form" class="mt-4 d-flex flex-column align-center" v-if="!isSubmitted">
             <h1 class="headline text-uppercase">Plan Your Event!</h1>
-            <v-text-field v-model="event.company" label="Company Name" type="text" required></v-text-field>
-            <v-text-field v-model="event.companyRepName" label="Company Representative Name" type="text" required></v-text-field>
-            <p class="event-picker">Event Date</p>
-            <v-date-picker v-model="event.eventDate" no-title class="mb-4" required></v-date-picker>
-            <p class="event-picker">Event Start Time</p>
-            <v-time-picker v-model="event.startTime" ampm-in-title :allowed-minutes="allowedMinutes" color="green accent-4" class="mb-4" required></v-time-picker>
-            <p class="event-picker">Event End Time</p>
-            <v-time-picker v-model="event.endTime" ampm-in-title :allowed-minutes="allowedMinutes" color="red darken-4" class="mb-4" required></v-time-picker>
+            <div id="event-form-top">
+                <div id="form-top-text">
+                    <v-text-field v-model="event.company" label="Company Name" type="text" required></v-text-field>
+                    <v-text-field v-model="event.companyRepName" label="Company Representative Name" type="text" required></v-text-field>
+                </div>
+                <div id="event-time-picker">
+                    <p class="event-picker">Event Date</p>
+                    <v-date-picker v-model="event.eventDate" no-title class="mb-4" required id="date-picker"></v-date-picker>
+                </div>
+            </div>
+            <div id="event-time-pickers">
+                <div class="event-picker-wrap">
+                    <p class="event-picker">Event Start Time</p>
+                    <v-time-picker id="start-time-picker" v-model="event.startTime" ampm-in-title :allowed-minutes="allowedMinutes" color="green accent-4" class="mb-4" required></v-time-picker>
+                </div>
+                <div class="event-picker-wrap">
+                    <p class="event-picker">Event End Time</p>
+                    <v-time-picker id="end-time-picker" v-model="event.endTime" ampm-in-title :allowed-minutes="allowedMinutes" color="red darken-4" class="mb-4" required></v-time-picker>
+                </div>
+            </div>
             <v-text-field v-model="event.peopleCount" label="Number of People" type="text" required></v-text-field>
             <p class="event-picker">Number of Courses: {{ event.foodCourseCount }}</p>
             <v-slider v-model="event.foodCourseCount" min="1" max="7" ticks="always" tick-size="4" :tick-labels="foodCourseTickLabels" class="mt-0" required></v-slider>
@@ -112,12 +124,27 @@
 
 <style scoped lang="scss">
     @import '../_variables.scss';
+    #plan-wrapper {
+        width: 100vw !important;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
     #event-form {
         width: 95%;
         h1 {
             width: 100%;
             text-align: center;
         }
+    }
+    #event-form-top {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    #form-top-text {
+        width: 100%;
     }
     .v-input {
         width: 100%;
@@ -156,13 +183,34 @@
 
 
     @media only screen and (min-width: 48rem) {
+        #event-form {
+            width: 48rem !important;
+        }
+        #event-form-top {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        #form-top-text {
+            width: 50%;
+        }
+        #event-time-pickers {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+        }
 
     }
 
     // For large screens
     @media only screen and (min-width: 75rem) {
+        #plan-wrapper {
+            width: 75rem;
+        }
         #event-form {
-            width: 50%;
+            width: 60%;
         }
     }
 </style>
