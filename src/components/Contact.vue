@@ -2,7 +2,7 @@
     <v-container class="d-flex flex-column align-center mt-5">
        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfAPknp725EyiVC2-79aDDX5sPNRAPgJJcekuzkYsGIzR7JNg/viewform?embedded=true" width="375" height="1000" frameborder="0" marginheight="0" marginwidth="0" id="form-sm">Loading…</iframe>
 
-       <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfAPknp725EyiVC2-79aDDX5sPNRAPgJJcekuzkYsGIzR7JNg/viewform?embedded=true" width="640" height="1103" frameborder="0" marginheight="0" marginwidth="0" id="form-lg">Loading…</iframe>
+       <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfAPknp725EyiVC2-79aDDX5sPNRAPgJJcekuzkYsGIzR7JNg/viewform?embedded=true" width="640" height="1050" frameborder="0" marginheight="0" marginwidth="0" id="form-lg">Loading…</iframe>
     </v-container>
 </template>
 
